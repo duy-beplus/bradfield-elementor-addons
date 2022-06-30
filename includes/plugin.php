@@ -199,9 +199,24 @@ final class Plugin {
 	 */
 	public function init() {
 
+		add_action('elementor/frontend/after_enqueue_styles', [$this, 'frontend_styles']);
+		add_action('elementor/frontend/after_enqueue_scripts', [$this, 'frontend_scripts']);
+
 		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
 		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
 
+	}
+
+	public function frontend_styles()
+	{
+		wp_register_style('custom_search_events_style', plugins_url('bradfield-elementor-addons/assets/css/custom-search-events-style.css'));
+		wp_enqueue_style('custom_search_events_style');
+	}
+
+	public function frontend_scripts()
+	{
+		wp_register_script('custom_search_events_script', plugins_url('bradfield-elementor-addons/assets/js/custom-search-events-script.js'));
+		wp_enqueue_script('custom_search_events_script');
 	}
 
 	/**
