@@ -209,8 +209,8 @@ final class Plugin {
 
 	public function frontend_styles()
 	{
-		wp_register_style('custom_search_events_style', plugins_url('bradfield-elementor-addons/assets/css/custom-search-events-style.css'));
-		wp_enqueue_style('custom_search_events_style');
+		// wp_register_style('custom_search_events_style', plugins_url('bradfield-elementor-addons/assets/css/custom-search-events-style.css'));
+		// wp_enqueue_style('custom_search_events_style');
 	}
 
 	public function frontend_scripts()
