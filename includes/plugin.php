@@ -1,7 +1,8 @@
 <?php
+
 namespace Bradfield_Elementor_Addon;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -12,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-final class Plugin {
+final class Plugin
+{
 
 	/**
 	 * Addon Version
@@ -58,13 +60,13 @@ final class Plugin {
 	 * @static
 	 * @return \Elementor_Test_Addon\Plugin An instance of the class.
 	 */
-	public static function instance() {
+	public static function instance()
+	{
 
-		if ( is_null( self::$_instance ) ) {
+		if (is_null(self::$_instance)) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
-
 	}
 
 	/**
@@ -76,12 +78,12 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
-		if ( $this->is_compatible() ) {
-			add_action( 'elementor/init', [ $this, 'init' ] );
+		if ($this->is_compatible()) {
+			add_action('elementor/init', [$this, 'init']);
 		}
-
 	}
 
 	/**
@@ -92,28 +94,28 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function is_compatible() {
+	public function is_compatible()
+	{
 
 		// Check if Elementor installed and activated
-		if ( ! did_action( 'elementor/loaded' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_missing_main_plugin' ] );
+		if (!did_action('elementor/loaded')) {
+			add_action('admin_notices', [$this, 'admin_notice_missing_main_plugin']);
 			return false;
 		}
 
 		// Check for required Elementor version
-		if ( ! version_compare( ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_elementor_version' ] );
+		if (!version_compare(ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=')) {
+			add_action('admin_notices', [$this, 'admin_notice_minimum_elementor_version']);
 			return false;
 		}
 
 		// Check for required PHP version
-		if ( version_compare( PHP_VERSION, self::MINIMUM_PHP_VERSION, '<' ) ) {
-			add_action( 'admin_notices', [ $this, 'admin_notice_minimum_php_version' ] );
+		if (version_compare(PHP_VERSION, self::MINIMUM_PHP_VERSION, '<')) {
+			add_action('admin_notices', [$this, 'admin_notice_minimum_php_version']);
 			return false;
 		}
 
 		return true;
-
 	}
 
 	/**
@@ -124,19 +126,19 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function admin_notice_missing_main_plugin() {
+	public function admin_notice_missing_main_plugin()
+	{
 
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if (isset($_GET['activate'])) unset($_GET['activate']);
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor */
-			esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'bradfield-elementor-addon' ),
-			'<strong>' . esc_html__( 'Bradfield Elementor Addon', 'bradfield-elementor-addon' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'bradfield-elementor-addon' ) . '</strong>'
+			esc_html__('"%1$s" requires "%2$s" to be installed and activated.', 'bradfield-elementor-addon'),
+			'<strong>' . esc_html__('Bradfield Elementor Addon', 'bradfield-elementor-addon') . '</strong>',
+			'<strong>' . esc_html__('Elementor', 'bradfield-elementor-addon') . '</strong>'
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
+		printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message);
 	}
 
 	/**
@@ -147,20 +149,20 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function admin_notice_minimum_elementor_version() {
+	public function admin_notice_minimum_elementor_version()
+	{
 
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if (isset($_GET['activate'])) unset($_GET['activate']);
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'bradfield-elementor-addon' ),
-			'<strong>' . esc_html__( 'Bradfield Elementor Addon', 'bradfield-elementor-addon' ) . '</strong>',
-			'<strong>' . esc_html__( 'Elementor', 'bradfield-elementor-addon' ) . '</strong>',
-			 self::MINIMUM_ELEMENTOR_VERSION
+			esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'bradfield-elementor-addon'),
+			'<strong>' . esc_html__('Bradfield Elementor Addon', 'bradfield-elementor-addon') . '</strong>',
+			'<strong>' . esc_html__('Elementor', 'bradfield-elementor-addon') . '</strong>',
+			self::MINIMUM_ELEMENTOR_VERSION
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
+		printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message);
 	}
 
 	/**
@@ -171,20 +173,20 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function admin_notice_minimum_php_version() {
+	public function admin_notice_minimum_php_version()
+	{
 
-		if ( isset( $_GET['activate'] ) ) unset( $_GET['activate'] );
+		if (isset($_GET['activate'])) unset($_GET['activate']);
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
-			esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'bradfield-elementor-addon' ),
-			'<strong>' . esc_html__( 'Bradfield Elementor Addon', 'bradfield-elementor-addon' ) . '</strong>',
-			'<strong>' . esc_html__( 'PHP', 'bradfield-elementor-addon' ) . '</strong>',
-			 self::MINIMUM_PHP_VERSION
+			esc_html__('"%1$s" requires "%2$s" version %3$s or greater.', 'bradfield-elementor-addon'),
+			'<strong>' . esc_html__('Bradfield Elementor Addon', 'bradfield-elementor-addon') . '</strong>',
+			'<strong>' . esc_html__('PHP', 'bradfield-elementor-addon') . '</strong>',
+			self::MINIMUM_PHP_VERSION
 		);
 
-		printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message );
-
+		printf('<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', $message);
 	}
 
 	/**
@@ -197,14 +199,14 @@ final class Plugin {
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function init() {
+	public function init()
+	{
 
 		add_action('elementor/frontend/after_enqueue_styles', [$this, 'frontend_styles']);
 		add_action('elementor/frontend/after_enqueue_scripts', [$this, 'frontend_scripts']);
 
-		add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
-		add_action( 'elementor/controls/register', [ $this, 'register_controls' ] );
-
+		add_action('elementor/widgets/register', [$this, 'register_widgets']);
+		add_action('elementor/controls/register', [$this, 'register_controls']);
 	}
 
 	public function frontend_styles()
@@ -228,14 +230,11 @@ final class Plugin {
 	 *
 	 * @param \Elementor\Widgets_Manager $widgets_manager Elementor widgets manager.
 	 */
-	public function register_widgets( $widgets_manager ) {
+	public function register_widgets($widgets_manager)
+	{
 
-		// require_once( __DIR__ . '/includes/widgets/widget-1.php' );
-		// require_once( __DIR__ . '/includes/widgets/widget-2.php' );
-    //
-		// $widgets_manager->register( new Widget_1() );
-		// $widgets_manager->register( new Widget_2() );
-
+		require_once(__DIR__ . '/widgets/event-type.php');
+		$widgets_manager->register(new \EventTypeWidget());
 	}
 
 	/**
@@ -247,7 +246,7 @@ final class Plugin {
 	 *
 	 * @param \Elementor\Controls_Manager $controls_manager Elementor controls manager.
 	 */
-	public function register_controls( $controls_manager ) {
+	public function register_controls($controls_manager)
+	{
 	}
-
 }
