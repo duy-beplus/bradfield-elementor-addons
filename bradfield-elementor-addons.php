@@ -26,3 +26,16 @@ function bradfield_elementor_addon() {
 
 }
 add_action( 'plugins_loaded', 'bradfield_elementor_addon' );
+
+// Create New categories for widgets
+function add_elementor_widget_categories($elements_manager)
+{
+    $elements_manager->add_category(
+        'custom-category',
+        [
+            'title' => esc_html__('Custom Category', 'custom-elementor'),
+            'icon' => 'fa fa-plug',
+        ]
+    );
+}
+add_action('elementor/elements/categories_registered', 'add_elementor_widget_categories');
