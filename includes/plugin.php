@@ -232,9 +232,13 @@ final class Plugin
 	 */
 	public function register_widgets($widgets_manager)
 	{
-
+		// Event Type Element
 		require_once(__DIR__ . '/widgets/event-type.php');
 		$widgets_manager->register(new \EventTypeWidget());
+
+		// Table Costs Element
+		require_once(__DIR__ . '/widgets/cost-table.php');
+		$widgets_manager->register(new \CostTableWidget());
 	}
 
 	/**

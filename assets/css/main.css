@@ -1,0 +1,28 @@
+body.custom-background {
+    background-position-y: 132px;
+    background-color: rgba(239, 239, 239, 0.85) !important;
+}
+
+.elementor-widget:not(:last-child) {
+    margin-bottom: 0 !important;
+}
+
+.elementor-widget-text-editor h1 {
+    padding-bottom: 20px;
+}
+
+.elementor-widget-text-editor h2 {
+    padding-bottom: 15px;
+}
+
+.elementor-widget-text-editor h3 {
+    padding-bottom: 15px;
+}
+
+.elementor-widget-text-editor h4, .elementor-widget-text-editor h5 {
+    padding-bottom: 10px;
+}
+
+.elementor-widget-text-editor img {
+    border-radius: 30px;
+}

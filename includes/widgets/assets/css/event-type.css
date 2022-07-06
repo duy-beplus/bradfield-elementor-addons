@@ -2,7 +2,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    /* justify-content: space-between; */
+    justify-content: space-evenly;
+}
+
+@media (max-width: 1024px) {
+    .term-section {
+        gap: 15px;
+    }
 }
 
 .term-items {
@@ -20,6 +26,7 @@
     height: 360px !important;
     object-fit: cover;
     border-radius: 30px !important;
+    filter: brightness(0.6);
 }
 
 .term-section-loader {

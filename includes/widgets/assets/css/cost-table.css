@@ -1,0 +1,10 @@
+.cost_table-section table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow: hidden;
+}
+
+.cost_table-section table th:last-child, .cost_table-section table td:last-child {
+    border-style: none !important;
+    border-width: 0 !important;
+}

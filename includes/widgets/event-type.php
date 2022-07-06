@@ -28,7 +28,7 @@ class EventTypeWidget extends Widget_Base
 
     public function get_categories()
     {
-        return 'custom-category';
+        return ['custom-category'];
     }
 
     public function get_keywords()
@@ -157,7 +157,7 @@ class EventTypeWidget extends Widget_Base
                 'selector' => '{{WRAPPER}} .term-info-title',
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'title_margin',
             [
                 'label' => esc_html__('Margin', 'plugin-name'),
@@ -168,7 +168,7 @@ class EventTypeWidget extends Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'title_padding',
             [
                 'label' => esc_html__('Padding', 'plugin-name'),
@@ -205,7 +205,7 @@ class EventTypeWidget extends Widget_Base
                 'selector' => '{{WRAPPER}} .term-info-desc',
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_margin',
             [
                 'label' => esc_html__('Margin', 'plugin-name'),
@@ -216,7 +216,7 @@ class EventTypeWidget extends Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'desc_padding',
             [
                 'label' => esc_html__('Padding', 'plugin-name'),
@@ -301,7 +301,7 @@ class EventTypeWidget extends Widget_Base
                 'selector' => '{{WRAPPER}} .term-section-loadmore input',
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'loadmore_margin',
             [
                 'label' => esc_html__('Margin', 'plugin-name'),
@@ -312,7 +312,7 @@ class EventTypeWidget extends Widget_Base
                 ],
             ]
         );
-        $this->add_control(
+        $this->add_responsive_control(
             'loadmore_padding',
             [
                 'label' => esc_html__('Padding', 'plugin-name'),

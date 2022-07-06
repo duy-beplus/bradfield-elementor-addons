@@ -11,7 +11,7 @@ jQuery(function ($) {
         });
     }
     $(document).ready(function () {
-        var sizeItem = $(".term-section .term-items").size()
+        var sizeItem = $(".term-section .term-items").length
         var itemPerPage = 4
         $(".term-section .term-items").hide()
         $(".term-section .term-items:lt(" + itemPerPage + ")").fadeIn('slow')
