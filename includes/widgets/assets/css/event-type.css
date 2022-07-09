@@ -2,12 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    /* justify-content: space-evenly; */
 }
 
 @media (max-width: 1024px) {
     .term-section {
         gap: 15px;
+        justify-content: space-between;
     }
 }
 

@@ -29,7 +29,7 @@
     border-color: #dbdbdb;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .cost_table-section table {
         min-width: 560px;
     }
