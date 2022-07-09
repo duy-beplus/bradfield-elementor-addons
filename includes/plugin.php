@@ -216,6 +216,9 @@ final class Plugin
 
 		wp_register_style('single_event_style', plugins_url('bradfield-elementor-addons/assets/css/single-event-style.css'));
 		wp_enqueue_style('single_event_style');
+
+		wp_register_style('main-style', plugins_url('bradfield-elementor-addons/assets/css/main.css'));
+		wp_enqueue_style('main-style');
 	}
 
 	public function frontend_scripts()
@@ -225,6 +228,9 @@ final class Plugin
 
 		wp_register_script('single_event_script', plugins_url('bradfield-elementor-addons/assets/js/single-event-script.js'));
 		wp_enqueue_script('single_event_script');
+
+		wp_register_script('main-script', plugins_url('bradfield-elementor-addons/assets/js/main.js'));
+		wp_enqueue_script('main-script');
 	}
 
 	/**
