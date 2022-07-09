@@ -408,22 +408,24 @@ class CostTableWidget extends Widget_Base
             <div class="cost_table-heading">
                 <h2><?php echo $settings['heading'] ?></h2>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <?php foreach ($settings['table_repeater'] as $item) : ?>
-                            <th><?php echo $item['column_name'] ?></th>
-                        <?php endforeach; ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <?php foreach ($settings['table_repeater'] as $item) : ?>
-                            <td><?php echo $item['column_content'] ?></td>
-                        <?php endforeach; ?>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="cost_table-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <?php foreach ($settings['table_repeater'] as $item) : ?>
+                                <th><?php echo $item['column_name'] ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <?php foreach ($settings['table_repeater'] as $item) : ?>
+                                <td><?php echo $item['column_content'] ?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 <?php
     }
