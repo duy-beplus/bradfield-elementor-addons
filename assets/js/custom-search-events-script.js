@@ -1,3 +1,4 @@
+jQuery(function ($) {
 // Add text to Search result heading
 $(document).ready(function(){
     $("#evcal_cur").prepend("<span>Events for </span>");
@@ -39,4 +40,5 @@ $(document).mouseup(function (e) {
     if ($(e.target).closest(".evo_j_container").length === 0) {
         $(".evo_j_container").hide();
     }
+});
 });

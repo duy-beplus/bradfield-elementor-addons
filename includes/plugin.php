@@ -213,12 +213,18 @@ final class Plugin
 	{
 		// wp_register_style('custom_search_events_style', plugins_url('bradfield-elementor-addons/assets/css/custom-search-events-style.css'));
 		// wp_enqueue_style('custom_search_events_style');
+
+		wp_register_style('single_event_style', plugins_url('bradfield-elementor-addons/assets/css/single-event-style.css'));
+		wp_enqueue_style('single_event_style');
 	}
 
 	public function frontend_scripts()
 	{
 		wp_register_script('custom_search_events_script', plugins_url('bradfield-elementor-addons/assets/js/custom-search-events-script.js'));
 		wp_enqueue_script('custom_search_events_script');
+
+		wp_register_script('single_event_script', plugins_url('bradfield-elementor-addons/assets/js/single-event-script.js'));
+		wp_enqueue_script('single_event_script');
 	}
 
 	/**
@@ -232,6 +238,10 @@ final class Plugin
 	 */
 	public function register_widgets($widgets_manager)
 	{
+		// Content Single Event Element
+		require_once(__DIR__ . '/widgets/content-single-event.php');
+		$widgets_manager->register(new \Content_single_Event());
+
 		// Event Type Element
 		require_once(__DIR__ . '/widgets/event-type.php');
 		$widgets_manager->register(new \EventTypeWidget());
