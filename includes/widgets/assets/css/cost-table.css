@@ -1,10 +1,40 @@
 .cost_table-section table {
-    border-collapse: collapse;
+    border-spacing: 0;
     width: 100%;
     overflow: hidden;
 }
 
-.cost_table-section table th:last-child, .cost_table-section table td:last-child {
-    border-style: none !important;
-    border-width: 0 !important;
+.cost_table-section p {
+    margin: 0 !important;
+}
+
+.cost_table-section table td {
+    border: 1px solid;
+    border-color: #dbdbdb;
+}
+
+.cost_table-section table td:first-child {
+    border: 1px solid;
+    border-top: none;
+    border-right: none;
+    border-bottom-left-radius: 30px;
+    border-color: #dbdbdb;
+}
+
+.cost_table-section table td:last-child {
+    border: 1px solid;
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 30px;
+    border-color: #dbdbdb;
+}
+
+@media (max-width: 768px) {
+    .cost_table-section table {
+        min-width: 560px;
+    }
+
+    .cost_table-body {
+        overflow: scroll;
+    }
 }

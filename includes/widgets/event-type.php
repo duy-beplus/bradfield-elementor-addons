@@ -376,7 +376,7 @@ class EventTypeWidget extends Widget_Base
                     <input type="submit" value="Load more" id="load-more">
                 </div>
                 <div class="term-section-preload">
-                    <img src="<?php site_url() ?>/wp-content/uploads/2022/07/Ellipse-loadmore.png" alt="">
+                    <img src="<?php echo site_url() ?>/wp-content/uploads/2022/07/Ellipse-loadmore.png" alt="">
                 </div>
             </div>
         </section>

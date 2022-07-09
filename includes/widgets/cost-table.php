@@ -132,6 +132,59 @@ class CostTableWidget extends Widget_Base
             ]
         );
         $this->add_control(
+            'heading_color',
+            [
+                'label' => 'Color',
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .cost_table-heading h2' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'heading_typography',
+                'selector' => '{{WRAPPER}} .cost_table-heading h2',
+            ]
+        );
+        $this->add_control(
+            'heading_alignment',
+            [
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'label' => 'Alignment',
+                'options' => [
+                    'left' => [
+                        'title' => 'Left',
+                        'icon' => 'eicon-text-align-left',
+                    ],
+                    'center' => [
+                        'title' => 'Center',
+                        'icon' => 'eicon-text-align-center',
+                    ],
+                    'right' => [
+                        'title' => 'Right',
+                        'icon' => 'eicon-text-align-right',
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .cost_table-heading h2' => 'text-align: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'heading_padding',
+            [
+                'label' => 'Padding',
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .cost_table-heading' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'after',
+            ]
+        );
+        $this->add_control(
             'first_width',
             [
                 'label' => 'First column width',
@@ -188,7 +241,7 @@ class CostTableWidget extends Widget_Base
         $this->add_control(
             'table_border_radius',
             [
-                'label' => esc_html__('Border radius', 'plugin-name'),
+                'label' => 'Border radius',
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
@@ -236,18 +289,18 @@ class CostTableWidget extends Widget_Base
             'column_name_alignment',
             [
                 'type' => \Elementor\Controls_Manager::CHOOSE,
-                'label' => esc_html__('Alignment', 'plugin-name'),
+                'label' => 'Alignment',
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'plugin-name'),
+                        'title' => 'Left',
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'plugin-name'),
+                        'title' => 'Center',
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'plugin-name'),
+                        'title' => 'Right',
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -259,20 +312,12 @@ class CostTableWidget extends Widget_Base
         $this->add_responsive_control(
             'column_name_padding',
             [
-                'label' => esc_html__('Padding', 'plugin-name'),
+                'label' => 'Padding',
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
                     '{{WRAPPER}} .cost_table-section tr th' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'th_border',
-                'label' => 'Border',
-                'selector' => '{{WRAPPER}} .cost_table-section tr th',
             ]
         );
         $this->end_controls_section();
@@ -315,18 +360,18 @@ class CostTableWidget extends Widget_Base
             'column_content_alignment',
             [
                 'type' => \Elementor\Controls_Manager::CHOOSE,
-                'label' => esc_html__('Alignment', 'plugin-name'),
+                'label' => 'Alignment',
                 'options' => [
                     'left' => [
-                        'title' => esc_html__('Left', 'plugin-name'),
+                        'title' => 'Left',
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => esc_html__('Center', 'plugin-name'),
+                        'title' => 'Center',
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => esc_html__('Right', 'plugin-name'),
+                        'title' => 'Right',
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -338,20 +383,12 @@ class CostTableWidget extends Widget_Base
         $this->add_responsive_control(
             'column_content_padding',
             [
-                'label' => esc_html__('Padding', 'plugin-content'),
+                'label' => 'Padding',
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
                     '{{WRAPPER}} .cost_table-section tr td' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
-            ]
-        );
-        $this->add_group_control(
-            \Elementor\Group_Control_Border::get_type(),
-            [
-                'name' => 'td_border',
-                'label' => 'Border',
-                'selector' => '{{WRAPPER}} .cost_table-section tr td',
             ]
         );
         $this->end_controls_section();
@@ -368,20 +405,26 @@ class CostTableWidget extends Widget_Base
         $settings = $this->get_settings_for_display();
 ?>
         <section class="cost_table-section">
+            <div class="cost_table-heading">
+                <h2><?php echo $settings['heading'] ?></h2>
+            </div>
             <table>
-                <tr>
-                    <?php foreach ($settings['table_repeater'] as $item) : ?>
-                        <th><?php echo $item['column_name'] ?></th>
-                    <?php endforeach; ?>
-                </tr>
-                <tr>
-                    <?php foreach ($settings['table_repeater'] as $item) : ?>
-                        <td><?php echo $item['column_content'] ?></td>
-                    <?php endforeach; ?>
-                </tr>
+                <thead>
+                    <tr>
+                        <?php foreach ($settings['table_repeater'] as $item) : ?>
+                            <th><?php echo $item['column_name'] ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <?php foreach ($settings['table_repeater'] as $item) : ?>
+                            <td><?php echo $item['column_content'] ?></td>
+                        <?php endforeach; ?>
+                    </tr>
+                </tbody>
             </table>
         </section>
 <?php
-
     }
 }

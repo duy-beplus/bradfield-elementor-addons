@@ -17,9 +17,9 @@ jQuery(function ($) {
         $(".term-section .term-items:lt(" + itemPerPage + ")").fadeIn('slow')
         $(".term-section-preload").hide()
         if (sizeItem <= itemPerPage) {
-            $("#load-more").hide()
+            $(".term-section-loader").hide()
         } else {
-            $("#load-more").show()
+            $(".term-section-loader").show()
         }
         $("#load-more").click(function (e) {
             e.preventDefault();
@@ -29,7 +29,7 @@ jQuery(function ($) {
                 console.log(itemPerPage)
                 if (itemPerPage === sizeItem) {
                     $(".term-section .term-items:lt(" + itemPerPage + ")").fadeIn('slow')
-                    $("#load-more").hide()
+                    $(".term-section-loader").hide()
                 } else {
                     $(".term-section .term-items:lt(" + itemPerPage + ")").fadeIn('slow')
                 }
