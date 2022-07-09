@@ -8,15 +8,15 @@ body.custom-background {
 }
 
 .elementor-widget-text-editor h1 {
-    padding-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .elementor-widget-text-editor h2 {
-    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .elementor-widget-text-editor h3 {
-    padding-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .elementor-widget-text-editor h4, .elementor-widget-text-editor h5 {
@@ -25,4 +25,35 @@ body.custom-background {
 
 .elementor-widget-text-editor img {
     border-radius: 30px;
+    width: 100%;
+}
+
+.custom-p-tags p {
+    margin-bottom: 20px;
+}
+
+.featured-btn {
+    overflow: hidden;
+    max-height: 0;
+}
+
+.featured-btn a {
+    transform: translateY(200%);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.featured-box:hover .featured-btn {
+    max-height: initial !important;
+}
+
+.featured-box:hover .elementor-button-link {
+    transform: initial !important;
+}
+
+.box_section-btn .elementor-button-link {
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    width: 100%;
 }
