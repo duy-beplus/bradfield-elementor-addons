@@ -46,26 +46,15 @@ class Content_single_Event extends \Elementor\Widget_Base {
           <!-- /heading -->
           <!-- Event Date & time -->
           <div class="event-date">
-            <div class="calendar-icon">
-              <span><i class="fas fa-calendar-alt"></i></span>
-            </div>
-            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" ]'); ?>
-            <div class="event-date-time">
-              <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,"]'); ?>
-            </div>
+            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,organizer," ]'); ?>
           </div>
-          <!-- /Event Date & time -->
-          <!-- Event Organizer -->
-          <div class="event-organizer-block">
-            <div class="event-organizer">
-              <!-- <span><i class="far fa-user"></i></span> -->
-              <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="organizer,"]'); ?>
-            </div>
-          </div>
-          <!-- /Event Organizer -->
         </div>
-
-
+        <div class="event-thumbnail">
+          <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="ftimage,"]'); ?>
+        </div>
+        <div class="event-detail">
+          <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="eventdetails,"]'); ?>
+        </div>
 
         <!-- <i class="fas fa-phone-alt"></i> -->
       </div>

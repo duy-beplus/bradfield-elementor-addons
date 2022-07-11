@@ -1,1 +1,86 @@
-
+/* custom layout EventON */
+#content-single-event .event-date{
+  font-family: 'Roboto Medium';
+}
+#content-single-event .event-date .evcal_cblock {
+  margin: 0;
+}
+#content-single-event .event-date .desc_trig,
+#content-single-event .event-date .evocard_row,
+#content-single-event .event-date .evo_metarow_time,
+#content-single-event .event-date .evo_metarow_organizer
+{
+  padding: 0;
+}
+#content-single-event .event-thumbnail .desc_trig_outter,
+#content-single-event .event-detail .desc_trig_outter,
+#content-single-event .event-date .evcal_desc,
+.event-date .event_description .evo_h3,
+.event-date .event_description .evcal_evdata_icons
+{
+  display: none!important;
+}
+#content-single-event{
+  max-width: 770px;
+}
+.event-info-heading{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.event-info-heading .event-title{
+  font-size: 36px;
+  line-height: 167%;
+  font-weight: 700;
+  margin: 0;
+}
+.event-info-heading #event-btn-buy-ticket{
+  padding: 16px 34px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21px;
+  background: #4CAF50;
+  border-radius: 10px;
+  height: fit-content;
+  color: #fff;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.event-date .desc_trig{
+  width: fit-content!important;
+  background-color: transparent!important;
+}
+.event-date .desc_trig:hover{
+  border-left-width: 0!important;
+}
+.event-date .evo_start {
+  display: flex;
+  color: #444;
+  flex-direction: row-reverse;
+  align-items: baseline;
+}
+.event-date .evo_start .date,
+.event-date .evo_start .month{
+  margin-right: 4px;
+  text-transform: none!important;
+  font-size: 18px!important;
+  line-height: 183%!important;
+  font-family: 'Roboto Medium';
+}
+.event-date .event_description{
+  border: none!important;
+  background-color: transparent;
+}
+.event-date .desc_trig{
+  min-height: auto!important;
+}
+.event-date .evocard_box {
+  background-color: transparent!important;
+}
+.event-date .evo_eventcard_time_t{
+  font-size: 18px;
+  line-height: 183%;
+  /* font-weight: 600; */
+  font-family: 'Roboto Medium';
+  color: #444;
+}
