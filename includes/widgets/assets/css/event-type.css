@@ -37,6 +37,7 @@
     object-fit: cover;
     border-radius: 30px !important;
     filter: brightness(0.6);
+    transition: all 0.3s;
 }
 
 .term-section-loader {
