@@ -1,7 +1,7 @@
 jQuery(function ($) {
 // Add text to Search result heading
 $(document).ready(function(){
-    $("#evcal_cur").prepend("<span>Events for </span>");
+    $(".search-result #evcal_cur").prepend("<span>Events for </span>");
 });
 // Add Date to input block
 $(document).ready(function(){
@@ -11,34 +11,30 @@ $(document).ready(function(){
       currentMonth = "0"+currentMonth;
     }
     var currentDay = (new Date).getDate();
-    $(".evo_cal_above").prepend("<p><b class='current_date'>"+ currentMonth +"</b> | <b class='current_year'>"+ currentYear +"</b></p>");
+    $(".search-result .evo_cal_above").prepend("<p><b class='current_date'>"+ currentMonth +"</b> | <b class='current_year'>"+ currentYear +"</b></p>");
 });
-// hide Date option drop down
+//hide Date option drop down
 $(document).ready(function(){
-    $('.evo_j_container').css('display','none');
-});
-// show/hide Date option drop down
-$(".search-result .evo_cal_above").click(function() {
-  $(".evo_j_container").slideToggle();
+    $('.search-result .evo_j_container').css('display','none');
 });
 
-$(".evo_j_months .legend a").click(function() {
+$(".search-result .evo_j_months .legend a").click(function() {
   var data_month = $(this).text();
-  $(".evo_cal_above .current_date").html(data_month)
+  $(".search-result .evo_cal_above .current_date").html(data_month)
 });
 
-$(".evo_j_years .legend a").click(function() {
+$(".search-result .evo_j_years .legend a").click(function() {
   var data_year = $(this).text();
-  $(".evo_cal_above .current_year").html(data_year)
+  $(".search-result .evo_cal_above .current_year").html(data_year)
 });
 
-$(".evo_j_months .legend a").click(function() {
-  $(".evo_j_container").hide();
+$(".search-result .evo_j_months .legend a").click(function() {
+  $(".search-result .evo_j_container").hide();
 });
 
 $(document).mouseup(function (e) {
-    if ($(e.target).closest(".evo_j_container").length === 0) {
-        $(".evo_j_container").hide();
+    if ($(e.target).closest(".search-result .evo_j_container").length === 0) {
+        $(".search-result .evo_j_container").hide();
     }
 });
 });
