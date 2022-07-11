@@ -26,7 +26,6 @@ jQuery(function ($) {
             $(".term-section-preload").show()
             setTimeout(function () {
                 itemPerPage = (itemPerPage + 4 <= sizeItem) ? itemPerPage + 4 : sizeItem
-                console.log(itemPerPage)
                 if (itemPerPage === sizeItem) {
                     $(".term-section .term-items:lt(" + itemPerPage + ")").fadeIn('slow')
                     $(".term-section-loader").hide()

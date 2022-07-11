@@ -7,13 +7,19 @@
 @media (max-width: 1024px) {
     .term-section {
         gap: 15px;
-        justify-content: space-between;
+        justify-content: center;
     }
 }
 
 .term-items {
     position: relative;
     border-radius: 30px;
+    transition: all 0.3s;
+}
+
+.term-items:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 0px 30px -2px rgb(0 0 0 / 40%) !important;
 }
 
 .term-items-info {
