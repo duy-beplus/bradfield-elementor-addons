@@ -32,6 +32,10 @@ body.custom-background {
     margin-bottom: 20px;
 }
 
+.custom-p-tags p:last-child {
+    margin-bottom: 0;
+}
+
 .featured-btn {
     overflow: hidden;
     max-height: 0;
