@@ -22,6 +22,11 @@
 }
 #content-single-event{
   max-width: 770px;
+  background-color: #fff;
+  border-radius: 30px 30px 0 0;
+}
+#content-single-event .event-info-block{
+  padding: 50px 50px 35px 50px;
 }
 .event-info-heading{
   display: flex;
@@ -31,7 +36,7 @@
 .event-info-heading .event-title{
   font-size: 36px;
   line-height: 167%;
-  font-weight: 700;
+  font-weight: 700!important;
   margin: 0;
 }
 .event-info-heading #event-btn-buy-ticket{
@@ -46,6 +51,10 @@
   text-transform: capitalize;
   cursor: pointer;
 }
+.event-date .desc_trig_outter{
+  padding-bottom: 24px!important;
+  border-bottom: 1px solid #D9D9D9!important;
+}
 .event-date .desc_trig{
   width: fit-content!important;
   background-color: transparent!important;
@@ -54,10 +63,26 @@
   border-left-width: 0!important;
 }
 .event-date .evo_start {
+  margin-left: 70px;
   display: flex;
   color: #444;
   flex-direction: row-reverse;
-  align-items: baseline;
+  align-items: center;
+  height: 52px;
+}
+.event-date .evo_start::before{
+  content: "\f073";
+  font-family: "Font Awesome 5 Free";
+  display: block;
+  position: absolute;
+    transform: translate(-79px, 0);
+    font-size: 18px;
+    color: #4CAF50;
+    padding: 12px 18px;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    background: #F1F1F1;
 }
 .event-date .evo_start .date,
 .event-date .evo_start .month{
@@ -66,10 +91,17 @@
   font-size: 18px!important;
   line-height: 183%!important;
   font-family: 'Roboto Medium';
+  font-weight: normal;
 }
 .event-date .event_description{
   border: none!important;
   background-color: transparent;
+  background-color: #fff!important;
+}
+.event-date .event_description .evo_metarow_time {
+  position: absolute;
+  transform: translateY(-76px);
+  left: 132px;
 }
 .event-date .desc_trig{
   min-height: auto!important;
@@ -80,7 +112,81 @@
 .event-date .evo_eventcard_time_t{
   font-size: 18px;
   line-height: 183%;
-  /* font-weight: 600; */
   font-family: 'Roboto Medium';
   color: #444;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_image{
+  display: none!important;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_name{
+  display: flex!important;
+  align-items: baseline;
+  margin: 0!important;
+  padding-top: 24px;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_name_t,
+.event-date .evo_metarow_organizer .evo_card_organizer_contact{
+  font-size: 16px!important;
+  line-height: 250%;
+  color: #444;
+
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_name_t{
+  position: relative;
+  padding-left: 30px;
+  padding-right: 16px;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_name_t::before{
+  content: "\f007";
+  font-family: "Font Awesome 5 Free";
+  display: block;
+  position: absolute;
+  transform: translate(-30px, -1px);
+  font-size: 18px;
+  color: #4CAF50;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_name_t::after{
+  content: "";
+  display: block;
+  height: 20px;
+  width: 1px;
+  background-color: #D9D9D9;
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_contact{
+  padding-left: 40px;
+}
+.event-date .evo_metarow_organizer .evo_card_organizer_contact::before{
+  content: "\f879";
+  font-family: 'evo_FontAwesomeS';
+  display: block;
+  position: absolute;
+  transform: translate(-30px, -1px);
+  font-size: 16px;
+  color: #4CAF50;
+}
+.event-date .addtocal .evcal_evdata_cell p{
+  display: flex!important;
+  flex-direction: row-reverse;
+}
+.event-date .addtocal .evcal_evdata_cell a{
+  margin: 0 5px;
+  padding: 17px 24px!important;
+  width: 100%;
+  font-size: 14px;
+  line-height: 18px;
+  color: #333;
+  border: 1px solid #D8D8D8;
+  border-radius: 10px;
+  font-family: 'PT Sans Bold';
+  border-width: 1px!important;
+  opacity: 1!important;
+}
+.event-date .addtocal .evcal_evdata_cell a:hover{
+  background-color: #D8D8D8;
+}
+.event-date .addtocal .evo_metarow_ICS {
+  padding: 16px 0 0 0!important;
 }

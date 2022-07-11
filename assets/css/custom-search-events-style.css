@@ -1,9 +1,32 @@
-/* Begin Style form search and search resulf */
+
+.search-result {
+    font-family: 'PT Sans', sans-serif;
+}
+.search-result .elementor-widget-container{
+    margin-top: 0!important;
+}
 .search-result .evo-search,
-.search-result .evo-jumper-btn,
+/*.search-result .evo-jumper-btn,*/
 .search-result .evo-filter-btn,
 .search-result .evo-sort-btn{
     display: none;
+}
+.search-result .evo-jumper-btn{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0!important;
+    opacity: 0;
+    display: block;
+}
+.search-result .evo-jumper-btn:hover{
+    opacity: 0;
+}
+.search-result .evo_arrows{
+    display: none;
+}
+.search-result .evosv_grid .row{
+    text-align: center;
 }
 .search-result .evo_cal_above:before{
     content: "Event In";
@@ -29,7 +52,7 @@
 .search-result .evo_search_bar.hidden, .evo_search_bar.evo_hidden{display: block!important;
 }
 .search-result .evo_cal_above{
-    height: 50px;
+    height: 49px;
     max-width: 260px;
     margin-right: 20px;
     width: 100%;
@@ -57,10 +80,10 @@
     align-items: end;
 }
 .search-result .evo_j_container{
-    display: flex;
+    display: none;
     gap: 20px;
     position: absolute;
-    z-index: 10;
+    z-index: 20;
     left: 32px;
     transform: translateY(80px);
     background-color: #fff;
@@ -77,9 +100,6 @@
     left: 0;
 }
 
-.search-result .evo_arrows{
-    display: none;
-}
 .search-result .evo_search_bar_in{
     position: inherit!important;
     height: fit-content;
@@ -106,11 +126,28 @@
 }
 .search-result .evosr_search_btn{
     background-color: #222;
-    padding: 30px 44px;
+    padding: 30px 0;
     position: relative!important;
     top: auto!important;
     right: auto!important;
     border-radius: 10px;
+    max-width: 171px;
+    width: 100%;
+    text-align: center;
+}
+.search-result .evosr_search_btn:hover{
+    background-color: #444;
+}
+.search-result .evosr_search_btn:before{
+    content: "Find Events";
+    font-family: 'PT Sans', sans-serif;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 22px;
+}
+.search-result .evosr_search_btn i{
+    display: none;
 }
 .search-result .evo_search_bar {
     height: fit-content;
@@ -119,22 +156,22 @@
 .search-result .fa-search{
     color: #fff;
 }
-.search-result .fa-search:before{
-    /*content: "Find Events";*/
-    /*font-size: 17px;*/
-    /*color: #fff;*/
-    /*font-weight: 700;*/
-    /*line-height: 22px;*/
-}
+
 .search-result .legend a.set{
     background-color: #4CAF50!important;
 }
 .search-result .legend{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
+
 /*Grid result*/
+.search-result .evo_month_title{
+    font-size: 30px!important;
+    color: #222!important;
+}
 .search-result .evosv_grid {
+    font-family: 'PT Sans', sans-serif;
     margin-top: 140px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -142,7 +179,10 @@
     row-gap: 20px;
     background-color: #fff!important;
 }
+
 .search-result .evosv_grid .date_row{
+    max-width: 260px;
+    width: 100%;
     padding-top: 0!important;
     padding-bottom: 26px!important;
     border-radius: 30px;
@@ -163,6 +203,17 @@
     line-height: 23px;
     padding: 18px 0 15px!important;
     color: #222;
+    border-bottom: 1px solid #D8D8D8;
+}
+.search-result .evosv_date .custom-date{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 32px;
+    width: 100%;
+}
+.search-result .evosv_date .custom-date-name{
+    color: #4CAF50;
+    font-size: 16px;
 }
 .search-result .evosv_items{
     padding: 0!important;
@@ -189,38 +240,70 @@
 .search-result .evosv_grid .row:hover .evosv_event{
     color: #4CAF50;
 }
-/* End Style form search and search resulf */
+.search-result .evosv_grid .row .evosv_date b{
+    margin: 0!important;
+}
 
-/* Begin Style Upcoming Events section */
-.upcoming-events #evcal_head{
-    display: none;
-}
-.upcoming-events #evcal_list{
-    gap: 30px;
-    flex-wrap: nowrap;
-}
-.upcoming-events .desc_trig{
-    height: 360px!important;
+.search-result .date_row > *:last-child .evosv_event{
+    border: none;
 }
 
 @media only screen and (max-width : 1024px) {
-.upcoming-events .desc_trig{
-    height: 300px!important;
+.search-result .evo_cal_above{
+    max-width: 200px;
 }
-.upcoming-events #evcal_list{
-    gap: 30px;
-    flex-wrap: wrap;
-}
-}
-@media only screen and (max-width: 780px) {
-.upcoming-events .desc_trig{
-    height: 260px!important;
+.search-result .evosv_grid{
+    grid-template-columns: repeat(3, 1fr);
 }
 }
-@media only screen and (max-width: 480px) {
-.upcoming-events .desc_trig{
-    height: 220px!important;
+@media only screen and (max-width: 767px) {
+.search-result #evcal_head{
+    padding-top: 40px;
 }
+.search-result #evcal_head{
+    display: block;
+}
+.search-result .evo_cal_above{
+    max-width: 100%;
+}
+.search-result .evo_search_bar_in{
+    flex-direction: column;
+    margin-top: 36px;
+}
+.search-result .evosr_search_btn{
+    max-width: 100%;
+    padding: 16px 0;
+    text-align: center;
+}
+.search-result .evo_cal_above:before{
+    transform: translateY(-26px);
+}
+.search-result .evo_cal_above_content:before{
+    transform: translateY(10px);
+}
+.search-result .evo_j_container{
+    transform: translate(0);
+}
+.search-result #evcal_cur{
+    transform: translateY(70px);
+}
+.search-result .evo_month_title{
+    font-size: 24px!important;
+}
+.search-result .evosv_grid{
+    margin-top: 100px;
+    grid-template-columns: repeat(2, 1fr);
 }
 
-/* End Style Upcoming Events section */
+}
+@media only screen and (max-width: 480px) {
+.search-result #evcal_head{
+    padding: 40px 24px 24px;
+}
+.search-result .evosv_grid{
+    grid-template-columns: repeat(1, 1fr);
+}
+.search-result .evosv_grid .date_row{
+    max-width: 100%;
+}
+}

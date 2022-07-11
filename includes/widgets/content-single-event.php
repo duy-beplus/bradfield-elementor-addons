@@ -46,7 +46,7 @@ class Content_single_Event extends \Elementor\Widget_Base {
           <!-- /heading -->
           <!-- Event Date & time -->
           <div class="event-date">
-            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,organizer," ]'); ?>
+            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,organizer,addtocal," ]'); ?>
           </div>
         </div>
         <div class="event-thumbnail">
