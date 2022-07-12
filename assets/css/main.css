@@ -97,7 +97,7 @@ body.custom-background {
     margin-bottom: 56px;
 }
 
-.elementor-widget-text-editor:hover a {
+.elementor-widget-text-editor a:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
