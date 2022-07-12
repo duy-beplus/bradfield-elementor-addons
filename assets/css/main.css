@@ -5,8 +5,8 @@
 }
 
 @font-face {
-    font-family: 'PT Sans Bold';
-    src: url('../fonts/pt-sans/PTSans-Regular.ttf');
+  font-family: 'PT Sans Bold';
+  src: url('../fonts/pt-sans/PTSans-Bold.ttf');
 }
 
 @font-face {
