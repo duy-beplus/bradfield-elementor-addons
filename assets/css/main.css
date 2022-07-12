@@ -97,13 +97,19 @@ body.custom-background {
     margin-bottom: 56px;
 }
 
+.elementor-widget-text-editor:hover a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 .elementor-widget-text-editor li:before {
     content: "\f00c";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 6 Free";
     display: inline-block;
     width: 1.5em;
     color: #4CAF50;
     font-size: 16px;
+    font-weight: 900;
 }
 
 @media (max-width: 767px) {
