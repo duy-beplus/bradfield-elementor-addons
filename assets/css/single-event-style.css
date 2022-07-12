@@ -22,7 +22,7 @@
 }
 
 #content-single-event{
-  max-width: 770px;
+  max-width: 100%;
   background-color: #fff;
   border-radius: 30px 30px 0 0;
 }
@@ -51,6 +51,9 @@
   color: #fff;
   text-transform: capitalize;
   cursor: pointer;
+}
+.event-info-heading #event-btn-buy-ticket:hover{
+  text-decoration: underline;
 }
 .bradfield-event-date .evocard_row{
   align-items: center;
@@ -114,6 +117,9 @@
   position: absolute;
   transform: translateY(-76px);
   left: 132px;
+}
+.bradfield-event-date .evo_card_organizer_name a{
+    font-family: 'Roboto Regular';
 }
 .bradfield-event-date .desc_trig{
   min-height: auto!important;
@@ -191,7 +197,7 @@
 }
 .bradfield-event-date .addtocal .evcal_evdata_cell a{
   margin: 0;
-  padding: 17px 24px!important;
+  padding: 17px 22px!important;
   width: 100%;
   font-size: 14px;
   line-height: 18px;
@@ -401,7 +407,7 @@
 .bradfield-event-detail .eventon_desc_in ul li::marker{
   content: "\f00c";
   font-size: 18px;
-  font-family: "Font Awesome 5 Free";
+  font-family: 'evo_FontAwesomeS';
   color: #4CAF50;
 }
 

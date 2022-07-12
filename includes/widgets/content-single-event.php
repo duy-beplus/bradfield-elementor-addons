@@ -39,9 +39,9 @@ class Content_single_Event extends \Elementor\Widget_Base {
           <!-- heading -->
           <div class="event-info-heading">
             <h1 class="event-title"><?php echo the_title(); ?></h1>
-            <div id="event-btn-buy-ticket">
+            <a href="#" id="event-btn-buy-ticket">
               buy ticket now
-            </div>
+            </a>
           </div>
           <!-- /heading -->
           <!-- Event Date & time -->
