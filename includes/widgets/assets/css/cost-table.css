@@ -35,6 +35,6 @@
     }
 
     .cost_table-body {
-        overflow: scroll;
+        overflow-x: scroll;
     }
 }
