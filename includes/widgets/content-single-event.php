@@ -45,14 +45,14 @@ class Content_single_Event extends \Elementor\Widget_Base {
           </div>
           <!-- /heading -->
           <!-- Event Date & time -->
-          <div class="event-date">
+          <div class="bradfield-event-date">
             <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,organizer,addtocal," ]'); ?>
           </div>
         </div>
-        <div class="event-thumbnail">
+        <div class="bradfield-event-thumbnail">
           <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="ftimage,"]'); ?>
         </div>
-        <div class="event-detail">
+        <div class="bradfield-event-detail">
           <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="eventdetails,"]'); ?>
         </div>
 
