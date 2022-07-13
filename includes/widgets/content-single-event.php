@@ -32,6 +32,11 @@ class Content_single_Event extends \Elementor\Widget_Base {
       // generate the final HTML on the frontend using PHP
       $settings = $this->get_settings_for_display();
       $event_id = get_the_ID();
+      $args = array(
+        'post_type'   => 'product'
+      );
+
+      $get_product = get_posts( $args );
 
       ?>
       <div id="content-single-event" class="content-single-container">
