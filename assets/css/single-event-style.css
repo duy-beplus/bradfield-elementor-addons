@@ -35,6 +35,7 @@
   align-items: baseline;
 }
 .event-info-heading .event-title{
+  font-family: 'PT Sans Bold';
   font-size: 36px;
   line-height: 167%;
   font-weight: 700!important;
@@ -229,6 +230,7 @@
   .event-info-heading #event-btn-buy-ticket{
     margin-bottom: 16px;
     padding: 12px 24px;
+    font-family: 'PT Sans Bold';
   }
   .bradfield-event-date .evocard_row{
     align-items: inherit;
@@ -256,6 +258,7 @@
 /* Custom thumbnail Event */
 .bradfield-event-thumbnail{
   padding-bottom: 12px;
+  background-color: #fff;
 }
 .bradfield-event-thumbnail .eventon_list_event {
   margin-bottom: 0;
@@ -283,6 +286,12 @@
 }
 .bradfield-event-thumbnail .eventon_list_event {
   margin-bottom: 0!important;
+}
+.bradfield-event-thumbnail .eventon_events_list .eventon_list_event .event_description{
+  border: none;
+}
+.bradfield-event-thumbnail .evocard_row .evocard_box{
+  background-color: #fff;
 }
 
 /* /Custom thumbnail Event */
