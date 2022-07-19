@@ -124,7 +124,12 @@ body.custom-background {
     margin-bottom: 30px;
 }
 
+/* .elementor-shortcode {
+    overflow-x: scroll;
+} */
+
 .tablepress {
+    /* min-width: 700px; */
     border-collapse: initial !important;
 }
 
@@ -186,4 +191,14 @@ body.custom-background {
 
 .tablepress#tablepress-7 tbody tr:first-child td:last-child {
     border-top-right-radius: 30px;
+}
+
+@media (max-width: 767px) {
+    .tablepress thead th {
+        padding: 15px 15px 15px 20px !important;
+    }
+
+    .tablepress td {
+        padding: 10px 15px 10px 20px !important;
+    }
 }

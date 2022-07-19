@@ -347,7 +347,7 @@ class EventTypeWidget extends Widget_Base
                     $item = get_post($getChoses['page_list']);
             ?>
                     <a href="<?php echo get_the_permalink($item->ID); ?>" class="term-items">
-                        <img class="term-items-thumbnail" src="<?php echo get_the_post_thumbnail($item->ID, 'full'); ?>">
+                        <div class="term-items-thumbnail"><?php echo get_the_post_thumbnail($item->ID, 'full'); ?></div>
                         <div class="term-items-info">
                             <div class="term-info-title"><?php echo get_the_title($item->ID); ?></div>
                             <div class="term-info-desc"><?php echo get_the_excerpt($item->ID) ?></div>
@@ -369,10 +369,10 @@ class EventTypeWidget extends Widget_Base
                 foreach ($getChildren as $item) :
                 ?>
                     <a href="<?php echo get_the_permalink($item->ID); ?>" class="term-items">
-                        <img class="term-items-thumbnail" src="<?php echo get_the_post_thumbnail($item->ID, 'full') ?>">
+                        <div class="term-items-thumbnail"><?php echo get_the_post_thumbnail($item->ID, 'full'); ?></div>
                         <div class="term-items-info">
                             <div class="term-info-title"><?php echo get_the_title($item->ID) ?></div>
-                            <div class="term-info-desc"><?php echo get_the_excerpt($item->ID, 8); ?></div>
+                            <div class="term-info-desc"><?php echo get_the_excerpt($item->ID); ?></div>
                         </div>
                     </a>
             <?php

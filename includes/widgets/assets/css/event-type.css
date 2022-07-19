@@ -11,33 +11,42 @@
     }
 }
 
+@media (max-width: 767px) {
+    .term-items-info {
+        bottom: 60px !important;
+        left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
 .term-items {
     position: relative;
     border-radius: 30px;
     transition: all 0.3s;
-}
-
-.term-items:hover {
-    box-shadow: 0px 0px 30px -2px rgb(0 0 0 / 40%) !important;
+    left: 0;
 }
 
 .term-items:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03);
+    box-shadow: 0px 0px 30px -2px rgb(0 0 0 / 40%) !important;
+    transition: all 0.3s;
 }
 
 .term-items-info {
     position: absolute;
     bottom: 64px;
     left: 46px;
+    padding-right: 30px;
 }
 
-.term-items-thumbnail {
+.term-items-thumbnail img {
     height: 360px !important;
     min-height: 100%;
     object-fit: cover;
     border-radius: 30px !important;
     filter: brightness(0.6);
     transition: all 0.3s;
+    border-radius: 30px !important;
 }
 
 .term-section-loader {
