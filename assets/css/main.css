@@ -5,8 +5,8 @@
 }
 
 @font-face {
-  font-family: 'PT Sans Bold';
-  src: url('../fonts/pt-sans/PTSans-Bold.ttf');
+    font-family: 'PT Sans Bold';
+    src: url('../fonts/pt-sans/PTSans-Bold.ttf');
 }
 
 @font-face {
@@ -118,4 +118,72 @@ body.custom-background {
         margin-top: 20px;
         margin-bottom: 30px;
     }
+}
+
+.elementor-widget-text-editor .tablepress {
+    margin-bottom: 30px;
+}
+
+.tablepress {
+    border-collapse: initial !important;
+}
+
+.tablepress td {
+    vertical-align: middle;
+}
+
+.tablepress .odd td {
+    background-color: transparent !important;
+}
+
+.tablepress .even td {
+    background-color: #4C2600 !important;
+    color: #ffff !important;
+}
+
+.tablepress td {
+    padding: 10px 20px 10px 30px !important;
+}
+
+.tablepress .row-hover tr:hover td {
+    background-color: #dddd !important;
+}
+
+.tablepress thead th {
+    background-color: #4C2600 !important;
+    color: #ffff !important;
+    padding: 30px 20px 20px 30px !important;
+    text-transform: uppercase;
+}
+
+.tablepress thead th:first-child {
+    border-top-left-radius: 30px
+}
+
+.tablepress thead th:last-child {
+    border-top-right-radius: 30px
+}
+
+.tablepress tbody td {
+    border: 1px solid #dddd;
+}
+
+.tablepress tbody tr:first-child td {
+    border-top: 1px solid #dddd !important;
+}
+
+.tablepress tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 30px;
+}
+
+.tablepress tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 30px;
+}
+
+.tablepress#tablepress-7 tbody tr:first-child td:first-child {
+    border-top-left-radius: 30px;
+}
+
+.tablepress#tablepress-7 tbody tr:first-child td:last-child {
+    border-top-right-radius: 30px;
 }

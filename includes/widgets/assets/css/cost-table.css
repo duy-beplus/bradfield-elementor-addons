@@ -5,15 +5,19 @@
 }
 
 .cost_table-section p {
-    margin: 0 !important;
+    margin-bottom: 20px !important;
 }
 
-.cost_table-section table td {
+.cost_table-section p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.vertical-table td {
     border: 1px solid;
     border-color: #dbdbdb;
 }
 
-.cost_table-section table td:first-child {
+.vertical-table td:first-child {
     border: 1px solid;
     border-top: none;
     border-right: none;
@@ -21,7 +25,7 @@
     border-color: #dbdbdb;
 }
 
-.cost_table-section table td:last-child {
+.vertical-table td:last-child {
     border: 1px solid;
     border-top: none;
     border-left: none;
@@ -37,4 +41,25 @@
     .cost_table-body {
         overflow-x: scroll;
     }
+}
+
+.horizontal-table {
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.2);
+}
+
+.horizontal-table p {
+    margin-bottom: 10px !important;
+}
+
+.horizontal-table td {
+    width: 50%;
+    padding: 10px 20px 10px 30px;
+}
+
+.horizontal-table tbody>tr:nth-child(even)>td {
+    background-color: #4C2600;
+    color: #ffff;
 }
