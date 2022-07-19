@@ -104,7 +104,7 @@ body.custom-background {
 
 .elementor-widget-text-editor li:before {
     content: "\f00c";
-    font-family: "Font Awesome 6 Free";
+    font-family: 'evo_FontAwesomeS';
     display: inline-block;
     width: 1.5em;
     color: #4CAF50;

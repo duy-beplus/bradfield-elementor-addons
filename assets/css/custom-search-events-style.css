@@ -98,6 +98,7 @@
     position: absolute;
     transform: translateY(132px);
     left: 0;
+    width: auto!important;
 }
 
 .search-result .evo_search_bar_in{
