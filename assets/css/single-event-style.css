@@ -316,6 +316,9 @@
 .bradfield-event-detail .eventon_desc_in{
   height: auto!important;
 }
+.bradfield-event-detail .eventon_desc_in > *:last-child{
+  margin-bottom: 0!important;
+}
 .bradfield-event-detail .event_description.evcal_eventcard{
   padding-bottom: 0;
 }
@@ -366,13 +369,13 @@
 
 .bradfield-event-detail .eventon_desc_in p{
   padding: 0!important;
-  margin-bottom: 42px!important;
+  margin-bottom: 32px!important;
   font-size: 18px!important;
   line-height: 183%!important;
 }
 .bradfield-event-detail .eventon_desc_in ul{
-  margin-left: 50px!important;
-  margin-bottom: 42px!important;
+  margin-left: 40px!important;
+  margin-bottom: 32px!important;
 }
 .bradfield-event-detail .eventon_desc_in ul li{
   padding-bottom: 12px!important;
@@ -397,7 +400,7 @@
     line-height: 170%!important;
   }
   .bradfield-event-detail .eventon_desc_in ul{
-    margin-left: 24px!important;
+    margin-left: 8px!important;
     margin-bottom: 24px!important;
   }
   .bradfield-event-detail .eventon_desc_in ul li{
@@ -407,10 +410,25 @@
     line-height: 170%!important;
   }
   .bradfield-event-detail .eventon_desc_in ul li::marker{
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 @media only screen and (max-width: 480px) {
+  .bradfield-event-date .event_description .evo_eventcard_time_t::before{
+  font-size: 16px;
+  width: 42px;
+  height: 42px;
+  }
+  .bradfield-event-date .evo_eventcard_time_t{
+    font-size: 14px;
+  }
+  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name_t,
+  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_contact{
+    font-size: 14px!important;
+  }
+  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name_t::before{
+    font-size: 16px;
+  }
 
 }
 
