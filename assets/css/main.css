@@ -128,8 +128,12 @@ body.custom-background {
     overflow-x: scroll;
 } */
 
+.wrapper-table {
+    overflow-x: scroll;
+}
+
 .tablepress {
-    /* min-width: 700px; */
+    min-width: 700px;
     border-collapse: initial !important;
 }
 
