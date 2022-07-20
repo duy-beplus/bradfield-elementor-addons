@@ -97,11 +97,6 @@
   background-color: transparent;
   background-color: #fff!important;
 }
-.bradfield-event-date .event_description .evo_metarow_time {
-  /* position: absolute;
-  transform: translateY(-75px);
-  left: 132px; */
-}
 .bradfield-event-date .evo_card_organizer_name a{
     font-family: 'Roboto Regular';
 }
@@ -203,6 +198,7 @@
   border-width: 1px!important;
   opacity: 1!important;
   text-transform: inherit;
+  text-align: center;
 }
 .bradfield-event-date .addtocal .evcal_evdata_cell a:hover{
   background-color: #f1f1f1;
@@ -239,6 +235,9 @@
   .bradfield-event-date .evo_eventcard_time_t{
     font-size: 16px;
     line-height: 150%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 16px;
   }
   .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name{
     padding-top: 0;
@@ -419,17 +418,21 @@
   width: 42px;
   height: 42px;
   }
-  .bradfield-event-date .evo_eventcard_time_t{
-    font-size: 14px;
+  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name_t::after{
+    top: -1px;
   }
-  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name_t,
+  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name_t{
+    font-size: 14px!important;
+  }
   .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_contact{
     font-size: 14px!important;
   }
   .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_name_t::before{
     font-size: 16px;
   }
-
+  .bradfield-event-date .evo_metarow_organizer .evo_card_organizer_contact::before{
+    font-size: 14px;
+  }
 }
 
 /* /Custom Event detail */

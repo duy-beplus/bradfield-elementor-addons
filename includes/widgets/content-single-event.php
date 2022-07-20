@@ -35,18 +35,19 @@ class Content_single_Event extends \Elementor\Widget_Base {
       $args = array(
         'post_type'   => 'product'
       );
-
-      $get_product = get_posts( $args );
-
+      $get_event = get_post_meta( $event_id );
+      $get_ticket_status = $get_event['evotx_tix'];
       ?>
       <div id="content-single-event" class="content-single-container">
         <div class="event-info-block">
           <!-- heading -->
           <div class="event-info-heading">
             <h1 class="event-title"><?php echo the_title(); ?></h1>
-            <a href="#" id="event-btn-buy-ticket">
-              buy ticket now
-            </a>
+            <?php if ($get_event['evotx_tix'][0] == 'yes'): ?>
+              <a href="#" id="event-btn-buy-ticket">
+                buy ticket now
+              </a>
+            <?php endif; ?>
           </div>
           <!-- /heading -->
           <!-- Event Date & time -->
