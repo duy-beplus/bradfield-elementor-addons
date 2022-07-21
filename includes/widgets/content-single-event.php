@@ -26,6 +26,42 @@ class Content_single_Event extends \Elementor\Widget_Base {
 
   protected function register_controls() {
 
+    // Start Style Tab
+    $this->start_controls_section(
+      'content_style_section',
+      [
+        'label' => esc_html__( 'Style Content', 'bradfield-elementor-addon' ),
+        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+      ]
+    );
+
+    // margin event info block
+    $this->add_control(
+			'event_info_block_margin',
+			[
+				'label' => esc_html__( 'Margin', 'bradfield-elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .event-info-block' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+    // padding date time block
+    $this->add_control(
+			'event_info_block_padding',
+			[
+				'label' => esc_html__( 'Padding', 'bradfield-elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .event-info-block' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+    $this->end_controls_section();
+    // End Style Tab
   }
 
   protected function render() {
@@ -55,9 +91,11 @@ class Content_single_Event extends \Elementor\Widget_Base {
             <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,organizer,addtocal," ]'); ?>
           </div>
         </div>
+
         <div class="bradfield-event-thumbnail">
           <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="ftimage,"]'); ?>
         </div>
+
         <div class="bradfield-event-detail">
           <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="eventdetails,"]'); ?>
         </div>
@@ -67,5 +105,4 @@ class Content_single_Event extends \Elementor\Widget_Base {
 
   <?php
   }
-
 }
