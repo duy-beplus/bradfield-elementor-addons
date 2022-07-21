@@ -3,6 +3,7 @@ jQuery(function ($) {
 $(document).ready(function(){
     $(".search-result #evcal_cur").prepend("<span>Events for </span>");
 });
+
 // Add Date to input block
 $(document).ready(function(){
     var currentYear = (new Date).getFullYear();
@@ -78,4 +79,10 @@ $(document).ajaxStop(function (e) {
   });
 });
 
+// Hook Ajax load event
+function animate_month_switch(new_data, title_element){
+
+  var new_data = 1
+  console.log(new_data);
+}
 });
