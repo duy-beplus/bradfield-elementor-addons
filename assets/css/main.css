@@ -50,8 +50,8 @@ body.custom-background {
 }
 
 .elementor-widget-text-editor img {
-    border-radius: 30px;
-    width: 100%;
+    border-radius: 30px !important;
+    width: 100% !important;
 }
 
 .custom-p-tags p {
@@ -93,7 +93,7 @@ body.custom-background {
     list-style: none;
     padding: 0;
     line-height: 222%;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-bottom: 56px;
 }
 
@@ -122,6 +122,18 @@ body.custom-background {
 
 .elementor-widget-text-editor .tablepress {
     margin-bottom: 30px;
+}
+
+.elementor-post-info li::before {
+    content: none;
+}
+
+.elementor-post-info a:hover {
+    text-decoration: none;
+}
+
+.elementor-widget-text-editor figcaption {
+    text-align: center;
 }
 
 /* .elementor-shortcode {
@@ -166,7 +178,7 @@ body.custom-background {
 }
 
 .tablepress thead th:first-child {
-    border-top-left-radius: 30px
+    border-top-left-radius: 30px;
 }
 
 .tablepress thead th:last-child {
