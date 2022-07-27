@@ -68,10 +68,9 @@ class Content_single_Event extends \Elementor\Widget_Base {
       // generate the final HTML on the frontend using PHP
       $settings = $this->get_settings_for_display();
       $event_id = get_the_ID();
-      $getProducts = get_posts( array(
-                    'post_type' => 'product',
-                ));
-
+      $args = array(
+        'post_type'   => 'product'
+      );
       $get_event = get_post_meta( $event_id );
       $get_ticket_status = $get_event['evotx_tix'];
       ?>
@@ -81,7 +80,7 @@ class Content_single_Event extends \Elementor\Widget_Base {
           <div class="event-info-heading">
             <h1 class="event-title"><?php echo the_title(); ?></h1>
             <?php if ($get_event['evotx_tix'][0] == 'yes'): ?>
-              <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" id="event-btn-buy-ticket">
+              <a href="#" id="event-btn-buy-ticket">
                 buy ticket now
               </a>
             <?php endif; ?>
