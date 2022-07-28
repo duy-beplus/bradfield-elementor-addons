@@ -262,6 +262,10 @@ final class Plugin
 		// Table Costs Element
 		require_once(__DIR__ . '/widgets/cost-table.php');
 		$widgets_manager->register(new \CostTableWidget());
+
+		// Upcoming Element
+		require_once(__DIR__ . '/widgets/upcoming-event.php');
+		$widgets_manager->register(new \UpcomingEventWidget());
 	}
 
 	/**
