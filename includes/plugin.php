@@ -217,6 +217,9 @@ final class Plugin
 		wp_register_style('single_event_style', plugins_url('bradfield-elementor-addons/assets/css/single-event-style.css'));
 		wp_enqueue_style('single_event_style');
 
+		wp_register_style('upcoming_event_style', plugins_url('bradfield-elementor-addons/assets/css/upcoming-event-style.css'));
+		wp_enqueue_style('upcoming_event_style');
+
 		wp_register_style('main-style', plugins_url('bradfield-elementor-addons/assets/css/main.css'));
 		wp_enqueue_style('main-style');
 	}
@@ -247,6 +250,10 @@ final class Plugin
 		// Content Single Event Element
 		require_once(__DIR__ . '/widgets/content-single-event.php');
 		$widgets_manager->register(new \Content_single_Event());
+
+		// Upcoming Event Element
+		require_once(__DIR__ . '/widgets/upcoming-events.php');
+		$widgets_manager->register(new \Upcoming_Events());
 
 		// Event Type Element
 		require_once(__DIR__ . '/widgets/event-type.php');

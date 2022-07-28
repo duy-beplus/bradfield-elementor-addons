@@ -73,6 +73,15 @@ class Content_single_Event extends \Elementor\Widget_Base {
       );
       $get_event = get_post_meta( $event_id );
       $get_ticket_status = $get_event['evotx_tix'];
+
+      $EVENT = new EVO_Event($event_id);
+
+      // get all event array meta data
+      $all_array_data = $EVENT->get_all_edata();
+
+      // get just one field from the meta array
+      $one_field = $EVENT->get_eprop('field_name');
+
       ?>
       <div id="content-single-event" class="content-single-container">
         <div class="event-info-block">
@@ -80,7 +89,7 @@ class Content_single_Event extends \Elementor\Widget_Base {
           <div class="event-info-heading">
             <h1 class="event-title"><?php echo the_title(); ?></h1>
             <?php if ($get_event['evotx_tix'][0] == 'yes'): ?>
-              <a href="#" id="event-btn-buy-ticket">
+              <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" id="event-btn-buy-ticket">
                 buy ticket now
               </a>
             <?php endif; ?>
