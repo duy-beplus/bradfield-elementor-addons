@@ -217,7 +217,7 @@ final class Plugin
 		wp_register_style('single_event_style', plugins_url('bradfield-elementor-addons/assets/css/single-event-style.css'));
 		wp_enqueue_style('single_event_style');
 
-		wp_register_style('upcoming_event_style', plugins_url('bradfield-elementor-addons/assets/css/upcoming-event-style.css'));
+		wp_register_style('upcoming_event_style', plugins_url('bradfield-elementor-addons/assets/css/upcoming-event-style.css'), array(), rand(1, 9999));
 		wp_enqueue_style('upcoming_event_style');
 
 		wp_register_style('main-style', plugins_url('bradfield-elementor-addons/assets/css/main.css'));

@@ -62,45 +62,41 @@ class EventTypeWidget extends Widget_Base
             ]
         );
         $this->add_control(
-            'choose_page',
+            'choose_term',
             [
-                'label' => 'Choose Event page?',
+                'label' => 'Choose Event type?',
                 'type' => Controls_Manager::SWITCHER,
                 'default' => ''
             ]
         );
 
-        // Set up the objects needed
-        $my_wp_query = new WP_Query();
-        $all_wp_pages = $my_wp_query->query(array('post_type' => 'page'));
-
-        // Get the page as an Object
-        $parent =  get_page_by_title('Facilities');
-
-        // Filter through all pages and find Portfolio's children
-        $getChildren = get_page_children($parent->ID, $all_wp_pages);
-        $optionsChild = [];
-        foreach ($getChildren as $item) {
-            $optionsChild[$item->ID] = $item->post_title;
+        //Query Event type Terms
+        $optionsTerm = [];
+        $terms = get_terms([
+            'taxonomy' => 'event_type',
+            'hide_empty' => false
+        ]);
+        foreach ($terms as $term) {
+            $optionsTerm[$term->term_id] = $term->name;
         }
         $repeater = new \Elementor\Repeater();
         $repeater->add_control(
-            'page_list',
+            'categories_list',
             [
                 'label' => 'Select Category',
                 'type' => Controls_Manager::SELECT,
                 'label_block' => 'false',
-                'options' => $optionsChild
+                'options' => $optionsTerm
             ]
         );
         $this->add_control(
-            'page_repeater',
+            'term_repeater',
             [
                 'label' => 'Event type',
                 'type' => Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'condition' => [
-                    'choose_page' => 'yes'
+                    'choose_term' => 'yes'
                 ]
             ]
         );
@@ -342,37 +338,32 @@ class EventTypeWidget extends Widget_Base
 ?>
         <section class="term-section">
             <?php
-            if ($settings['choose_page'] === 'yes') :
-                foreach ($settings['page_repeater'] as $getChoses) :
-                    $item = get_post($getChoses['page_list']);
+            if ($settings['choose_term'] === 'yes') :
+                foreach ($settings['term_repeater'] as $getTerms) :
+                    $getTerm = get_term($getTerms['categories_list'], 'event_type')
             ?>
-                    <a href="<?php echo get_the_permalink($item->ID); ?>" class="term-items">
-                        <div class="term-items-thumbnail"><?php echo get_the_post_thumbnail($item->ID, 'full'); ?></div>
+                    <a href="<?php echo get_term_link($getTerm->slug, 'event_type') ?>" class="term-items">
+                        <img class="term-items-thumbnail" src="<?php echo get_field('thumbnail_image', 'event_type_' . $getTerm->term_id) ?>">
                         <div class="term-items-info">
-                            <div class="term-info-title"><?php echo get_the_title($item->ID); ?></div>
-                            <div class="term-info-desc"><?php echo get_the_excerpt($item->ID) ?></div>
+                            <div class="term-info-title"><?php echo $getTerm->name; ?></div>
+                            <div class="term-info-desc"><?php echo $getTerm->description; ?></div>
                         </div>
                     </a>
                 <?php
                 endforeach;
-                wp_reset_postdata();
-            elseif ($settings['choose_page'] === '') :
-                // Set up the objects needed
-                $my_wp_query = new WP_Query();
-                $all_wp_pages = $my_wp_query->query(array('post_type' => 'page'));
-
-                // Get the page as an Object
-                $parent =  get_page_by_title('Facilities');
-
-                // Filter through all pages and find Portfolio's children
-                $getChildren = get_page_children($parent->ID, $all_wp_pages);
-                foreach ($getChildren as $item) :
+            elseif ($settings['choose_term'] === '') :
+                $terms = get_terms([
+                    'taxonomy' => 'event_type',
+                    'hide_empty' => false,
+                    'orderby' => 'ASC',
+                ]);
+                foreach ($terms as $getTerms) :
                 ?>
-                    <a href="<?php echo get_the_permalink($item->ID); ?>" class="term-items">
-                        <div class="term-items-thumbnail"><?php echo get_the_post_thumbnail($item->ID, 'full'); ?></div>
+                    <a href="<?php echo get_term_link($getTerms->slug, 'event_type') ?>" class="term-items">
+                        <img class="term-items-thumbnail" src="<?php echo get_field('thumbnail_image', 'event_type_' . $getTerms->term_id) ?>">
                         <div class="term-items-info">
-                            <div class="term-info-title"><?php echo get_the_title($item->ID) ?></div>
-                            <div class="term-info-desc"><?php echo get_the_excerpt($item->ID); ?></div>
+                            <div class="term-info-title"><?php echo $getTerms->name; ?></div>
+                            <div class="term-info-desc"><?php echo $getTerms->description; ?></div>
                         </div>
                     </a>
             <?php

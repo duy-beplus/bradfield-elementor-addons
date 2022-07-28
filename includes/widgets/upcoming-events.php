@@ -113,25 +113,28 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       while ( $the_query->have_posts() ) : $the_query->the_post();
         // Do Stuff
         ?>
-        <a href="<?php echo get_permalink(); ?>" >
-        <div class="upcoming-event-item">
-          <?php if(has_post_thumbnail()): ?>
-          <div class="featured-img">
-            <?php  the_post_thumbnail('large'); ?>
-          </div>
-          <?php endif; ?>
-          <span class="event-type"><i class="fas fa-tag"></i>Upcoming events</span>
-          <p class="event-meta-date">
+        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center;">
+        <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
+        <div class="upcoming-event-item-block" >
+          <span class="event-type">Upcoming events</span>
+          <span class="event-meta-date">
           <?php
             $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
             echo gmdate("F d, Y - g:i a", $event_meta_date);
            ?>
-         </p>
+         </span>
           <h3 class="upcoming-event-title"> <?php echo the_title(); ?></h3>
-          <a href="#">Buy Ticket</a>
         </div>
         </a>
         <?php
+          $get_event = get_post_meta( get_the_ID());
+          if ($get_event['evotx_tix'][0] == 'yes'): ?>
+          <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
+            Buy Ticket
+          </a>
+        <?php endif; ?>
+      </div>
+      <?php
       endwhile;
       endif;
       // Reset Post Data
@@ -145,19 +148,20 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       while ( $query_passed_event->have_posts() ) : $query_passed_event->the_post();
         // Do Stuff
         ?>
-        <a href="<?php echo get_permalink(); ?>" >
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>')">
-          <span class="event-type"><i class="fas fa-tag"></i>Passed events</span>
-          <p class="event-meta-date">
+        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center;">
+        <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
+        <div class="upcoming-event-item-block" >
+          <span class="event-type" style="background-color: #c7443a;">Passed events</span>
+          <span class="event-meta-date">
           <?php
             $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
             echo gmdate("F d, Y - g:i a", $event_meta_date);
            ?>
-         </p>
+         </span>
           <h3 class="upcoming-event-title"> <?php echo the_title(); ?></h3>
-          <a href="#">Buy Ticket</a>
         </div>
         </a>
+      </div>
         <?php
       endwhile;
       endif;
