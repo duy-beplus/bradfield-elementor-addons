@@ -264,8 +264,8 @@ final class Plugin
 		$widgets_manager->register(new \CostTableWidget());
 
 		// Upcoming Element
-		require_once(__DIR__ . '/widgets/upcoming-event.php');
-		$widgets_manager->register(new \UpcomingEventWidget());
+		require_once(__DIR__ . '/widgets/event-homepage.php');
+		$widgets_manager->register(new \EventHomeWidget());
 	}
 
 	/**
