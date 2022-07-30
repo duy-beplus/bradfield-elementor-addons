@@ -266,6 +266,10 @@ final class Plugin
 		// Upcoming Element
 		require_once(__DIR__ . '/widgets/event-homepage.php');
 		$widgets_manager->register(new \EventHomeWidget());
+
+		// Event Option Element
+		require_once(__DIR__ . '/widgets/event-option.php');
+		$widgets_manager->register(new \LoadEventByOptions());
 	}
 
 	/**
