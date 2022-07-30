@@ -29,15 +29,27 @@ class Upcoming_Events extends \Elementor\Widget_Base {
     $this->start_controls_section(
     'content_section',
       [
-        'label' => esc_html__( 'Content', 'community-elementor-addon' ),
+        'label' => esc_html__( 'Content', 'bradfield-elementor-addon' ),
         'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
       ]
     );
 
     $this->add_control(
+			'show_events_ticket',
+			[
+				'label' => esc_html__( 'Show Only Event Ticket', 'bradfield-elementor-addon' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'your-plugin' ),
+				'label_off' => esc_html__( 'No', 'your-plugin' ),
+				'return_value' => 'yes',
+				'default' => 'no',
+			]
+		);
+
+    $this->add_control(
 			'event_per_page',
 			[
-				'label' => esc_html__( 'Event per page', 'plugin-name' ),
+				'label' => esc_html__( 'Event per page', 'bradfield-elementor-addon' ),
 				'type' => \Elementor\Controls_Manager::NUMBER,
 				'min' => 0,
 				'max' => 100,
@@ -54,37 +66,59 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       // generate the final HTML on the frontend using PHP
       $settings = $this->get_settings_for_display();
       $postMeta = get_post_meta( get_the_ID());
-
       $current_date_unix = strtotime(date("F d, Y H:i:s"));
-      // print_r($current_date_unix);
       $now = current_time('timestamp');
+      $show_events_option = $settings['show_events_ticket'];
 
+      if ($settings['show_events_ticket'] == 'yes') {
+        $args = array(
+              'post_type'       => 'ajde_events',
+              'posts_per_page'	=> $settings['event_per_page'],
+  	          'order'		      	=> 'ASC',
+              'meta_key'			=> 'evcal_srow',
+  	          'orderby'			=> 'meta_value',
+              'meta_query' => array(
+                  'relation' => 'AND',
+                  array(
+                      'key' => 'evcal_srow',
+                      'value' => $now,
+                      'compare' => '>',
+                  ),
+                  array(
+                      'key' => 'evotx_tix',
+                      'value' => 'yes',
+                  ),
+              ),
+           );
+      }
+      else {
+        $args = array(
+              'post_type'       => 'ajde_events',
+              'posts_per_page'	=> $settings['event_per_page'],
+  	          'order'		      	=> 'ASC',
+              'meta_key'			=> 'evcal_srow',
+  	          'orderby'			=> 'meta_value',
+              'meta_query' => array(
+                  array(
+                      'key' => 'evcal_srow',
+                      'value' => $now,
+                      'compare' => '>',
+                  ),
+              ),
+           );
+      }
 
-      $args = array(
-            'post_type'       => 'ajde_events',
-            'posts_per_page'	=> $settings['event_per_page'],
-	          'order'		      	=> 'ASC',
-            'meta_key'			=> 'evcal_srow',
-	          'orderby'			=> 'meta_value',
-            'meta_query' => array(
-                array(
-                    'key' => 'evcal_srow',
-                    'value' => $now,
-                    'compare' => '>',
-                ) ,
-            ) ,
-         );
         $the_query = new WP_Query( $args );
-        $count_event = $the_query->post_count;
+        $count_upcoming = $the_query->post_count;
 
-        if ($count_event == 2) {
+        if ($count_upcoming == 2) {
           $passed_event_per_page = 1;
         }
-        elseif ($count_event == 1)
+        elseif ($count_upcoming == 1)
         {
           $passed_event_per_page = 2;
         }
-        elseif ($count_event == 0)
+        elseif ($count_upcoming == 0)
         {
           $passed_event_per_page = 3;
         }
@@ -142,7 +176,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       ?>
       <!-- Passed events -->
       <?php
-      if ($count_event < 3):
+      if ($count_upcoming < 3):
       // The Loop
       if ( $query_passed_event->have_posts() ) :
       while ( $query_passed_event->have_posts() ) : $query_passed_event->the_post();
