@@ -81,6 +81,7 @@
   transform: translate(58%, -154px);
 }
 
+
 @media only screen and (max-width: 767px) {
 .upcoming-event-wrapper{
   margin-top: 24px;
@@ -89,6 +90,9 @@
 .upcoming-event-wrapper .upcoming-event-item{
   max-width: 320px;
   height: auto;
+}
+.upcoming-event-wrapper .upcoming-event-item{
+  height: 310px;
 }
 .upcoming-event-wrapper .upcoming-event-item-block{
   height: 310px;
