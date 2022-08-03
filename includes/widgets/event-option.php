@@ -36,21 +36,21 @@ class LoadEventByOptions extends Widget_Base
         return ['key', 'value'];
     }
     // Register Script
-    // public function get_script_depends()
-    // {
-    //     wp_register_script('event_type_script', plugins_url('assets/js/event-type.js', __FILE__));
-    //     return [
-    //         'event_type_script'
-    //     ];
-    // }
+    public function get_script_depends()
+    {
+        wp_register_script('event_option_script', plugins_url('assets/js/event-option.js', __FILE__));
+        return [
+            'event_option_script'
+        ];
+    }
 
-    // public function get_style_depends()
-    // {
-    //     wp_register_style('event_type_style', plugins_url('assets/css/event-type.css', __FILE__));
-    //     return [
-    //         'event_type_style'
-    //     ];
-    // }
+    public function get_style_depends()
+    {
+        wp_register_style('event_option_style', plugins_url('assets/css/event-option.css', __FILE__));
+        return [
+            'event_option_style'
+        ];
+    }
 
     protected function register_query_control()
     {
@@ -83,15 +83,8 @@ class LoadEventByOptions extends Widget_Base
                 'options' => [
                     'ASC' => 'ASC',
                     'DESC' => 'DESC'
-                ]
-            ]
-        );
-        $this->add_control(
-            'choose_page',
-            [
-                'label' => 'Choose Event page?',
-                'type' => Controls_Manager::SWITCHER,
-                'default' => ''
+                ],
+                'default' => 'ASC'
             ]
         );
         $this->end_controls_section();
@@ -100,9 +93,9 @@ class LoadEventByOptions extends Widget_Base
     protected function register_style_control()
     {
         $this->start_controls_section(
-            'term_title_style',
+            'event_title_style',
             [
-                'label' => 'Term title',
+                'label' => 'Event title',
                 'tab' => Controls_Manager::TAB_STYLE
             ]
         );
@@ -110,7 +103,7 @@ class LoadEventByOptions extends Widget_Base
             'title_style'
         );
         $this->start_controls_tab(
-            'term_title_style_normal',
+            'event_title_style_normal',
             [
                 'label' => 'Normal'
             ]
@@ -121,13 +114,13 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .event-info-title' => 'color: {{VALUE}}',
                 ],
             ]
         );
         $this->end_controls_tab();
         $this->start_controls_tab(
-            'term_title_style_hover',
+            'event_title_style_hover',
             [
                 'label' => 'Hover'
             ]
@@ -138,7 +131,7 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-title:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .event-info-title:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -148,7 +141,7 @@ class LoadEventByOptions extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} .term-info-title',
+                'selector' => '{{WRAPPER}} .event-info-title',
             ]
         );
         $this->add_responsive_control(
@@ -158,7 +151,7 @@ class LoadEventByOptions extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .event-info-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -169,16 +162,16 @@ class LoadEventByOptions extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .event-info-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'term_desc_style',
+            'event_desc_style',
             [
-                'label' => 'Term desc',
+                'label' => 'event desc',
                 'tab' => Controls_Manager::TAB_STYLE
             ]
         );
@@ -188,7 +181,7 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-desc' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .event-info-desc' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -196,7 +189,7 @@ class LoadEventByOptions extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'desc_typography',
-                'selector' => '{{WRAPPER}} .term-info-desc',
+                'selector' => '{{WRAPPER}} .event-info-desc',
             ]
         );
         $this->add_responsive_control(
@@ -206,7 +199,7 @@ class LoadEventByOptions extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-desc' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .event-info-desc' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -217,7 +210,55 @@ class LoadEventByOptions extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .term-info-desc' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .event-info-desc' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'date_style',
+            [
+                'label' => 'Event Date',
+                'tab' => Controls_Manager::TAB_STYLE
+            ]
+        );
+        $this->add_control(
+            'date_color',
+            [
+                'label' => 'Color',
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .event-date' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'date_typography',
+                'selector' => '{{WRAPPER}} .event-date',
+            ]
+        );
+        $this->add_responsive_control(
+            'date_margin',
+            [
+                'label' => esc_html__('Margin', 'plugin-name'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .event-date' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'date_padding',
+            [
+                'label' => esc_html__('Padding', 'plugin-name'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .event-date' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -272,7 +313,7 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-section-loadmore input:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .event-section-loadmore input:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -282,7 +323,7 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Background Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-section-loadmore input:hover' => 'background: {{VALUE}} !important',
+                    '{{WRAPPER}} .event-section-loadmore input:hover' => 'background: {{VALUE}} !important',
                 ],
             ]
         );
@@ -292,7 +333,7 @@ class LoadEventByOptions extends Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'loadmore_typography',
-                'selector' => '{{WRAPPER}} .term-section-loadmore input',
+                'selector' => '{{WRAPPER}} .event-section-loadmore input',
             ]
         );
         $this->add_responsive_control(
@@ -302,7 +343,7 @@ class LoadEventByOptions extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .term-section-loadmore' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .event-section-loadmore' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -313,7 +354,7 @@ class LoadEventByOptions extends Widget_Base
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em'],
                 'selectors' => [
-                    '{{WRAPPER}} .term-section-loadmore input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .event-section-loadmore input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -329,25 +370,27 @@ class LoadEventByOptions extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
+        $now = current_time('timestamp');
         $all = array(
             'post_type'       => 'ajde_events',
             'posts_per_page'  => -1,
             'order'           => $settings['sort_date'],
-            // 'meta_key'            => 'evcal_srow',
-            // 'orderby'			=> 'meta_value',
-            // 'meta_query' => array(
-            //     array(
-            //         'key' => 'evcal_srow',
-            //         'value' => $now,
-            //         'compare' => '<',
-            //     ) ,
-            // ) ,
+            'orderby'            => 'meta_value',
+            'meta_key' => 'evcal_srow',
+            'meta_query' => array(
+                array(
+                    'key' => 'evcal_erow',
+                    'value' => $now,
+                    'compare' => '>',
+                ),
+            ),
         );
-        $now = current_time('timestamp');
         $ticket = array(
             'post_type'       => 'ajde_events',
             'posts_per_page'  => -1,
             'order'           => $settings['sort_date'],
+            'orderby'            => 'meta_value',
+            'meta_key' => 'evcal_srow',
             'meta_query' => array(
                 'relation' => 'AND',
                 array(
@@ -365,19 +408,61 @@ class LoadEventByOptions extends Widget_Base
             'post_type'       => 'ajde_events',
             'posts_per_page'  => -1,
             'order'           => $settings['sort_date'],
-            'meta_key'            => 'evcal_srow',
             'orderby'            => 'meta_value',
+            'meta_key' => 'evcal_srow',
             'meta_query' => array(
                 array(
-                    'key' => 'evcal_srow',
+                    'key' => 'evcal_erow',
                     'value' => $now,
                     'compare' => '>',
                 ),
             ),
         );
+        if ($settings['select_options'] === 'all') {
+            $query = new WP_Query($all);
+        } elseif ($settings['select_options'] === 'ticket') {
+            $query = new WP_Query($ticket);
+        } elseif ($settings['select_options'] === 'upcoming') {
+            $query = new WP_Query($upcoming);
+        }
 ?>
-    
-        
+        <section class="event-section">
+            <?php
+            if ($query->have_posts()) :
+                while ($query->have_posts()) : $query->the_post();
+            ?>
+                    <a href="<?php echo get_the_permalink(); ?>" class="event-items">
+                        <div class="event-items-thumbnail"><?php the_post_thumbnail('full'); ?></div>
+                        <div class="event-items-info">
+                            <div class="event-info-title"><?php echo get_the_title(); ?></div>
+                            <div class="event-info-desc"><?php echo get_post_meta(get_the_ID(), 'evcal_subtitle', true) ?></div>
+                        </div>
+                        <div class="event-date">
+                            <?php
+                            if ($settings['select_options'] === 'ticket') {
+                                echo '<div class="warning">Ticket</div>';
+                            } elseif ($settings['select_options'] === 'upcoming') {
+                                echo '<div class="warning">Upcoming Event</div>';
+                            }
+                            ?>
+                            <?php echo gmdate("F d, Y - g:i a", get_post_meta(get_the_ID(), 'evcal_srow', true)); ?>
+                        </div>
+                    </a>
+            <?php
+                endwhile;
+            endif;
+            wp_reset_postdata();
+            ?>
+            <div class="event-section-loader">
+                <div class="event-section-loadmore">
+                    <input type="submit" value="Load more" id="load-more">
+                </div>
+                <div class="event-section-preload">
+                    <img src="<?php echo site_url() ?>/wp-content/uploads/2022/07/Ellipse-loadmore.png" alt="">
+                </div>
+            </div>
+        </section>
+
 <?php
     }
 }
