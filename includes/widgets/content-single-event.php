@@ -72,7 +72,7 @@ class Content_single_Event extends \Elementor\Widget_Base {
         'post_type'   => 'product'
       );
       $get_event = get_post_meta( $event_id );
-      
+
       $get_ticket_status = $get_event['evotx_tix'];
 
       $EVENT = new EVO_Event($event_id);

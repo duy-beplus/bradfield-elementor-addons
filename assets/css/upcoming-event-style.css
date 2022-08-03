@@ -44,6 +44,16 @@
   font-size: 14px;
   font-family: 'PT Sans Regular';
 }
+.upcoming-event-item .is-featured{
+  color: #fff;
+  background-color: orange;
+  font-size: 16px;
+  font-family: 'PT Sans Regular';
+  padding: 2px 6px;
+  border-radius: 8px;
+  text-transform: capitalize;
+  font-weight: normal;
+}
 .upcoming-event-item .upcoming-event-title{
   transition: 0.4s;
   font-size: 36px;
