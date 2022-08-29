@@ -1,19 +1,20 @@
 jQuery(function ($) {
-// Add text to Search result heading
-$(document).ready(function(){
-    $(".search-result #evcal_cur").prepend("<span>Events for </span>");
-});
-
 // Add Date to input block
 $(document).ready(function(){
     var currentYear = (new Date).getFullYear();
     var currentMonth = (new Date).getMonth() + 1;
-    if (currentMonth < 10) {
-      currentMonth = "0"+currentMonth;
-    }
+    // if (currentMonth < 10) {
+    //   currentMonth = "0"+currentMonth;
+    // }
+    var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var d = new Date();
+    var monthName=months[d.getMonth()];
     var currentDay = (new Date).getDate();
-    $(".search-result .evo_cal_above").prepend("<p><b class='current_date'>"+ currentMonth +"</b> | <b class='current_year'>"+ currentYear +"</b></p>");
+    $(".search-result .evo_cal_above").prepend("<p><b class='current_date'>"+ monthName +"</b> | <b class='current_year'>"+ currentYear +"</b></p>");
+    $(".search-result #evcal_cur").prepend("<span>Events for </span>");
+    // $(".search-result .ajde_evcal_calendar").prepend("<h2 class='current-month-title'>Events for "+current_year+"</h2>");
 });
+
 //hide Date option drop down
 $(document).ready(function(){
     $('.search-result .evo_j_container').css('display','none');
@@ -79,10 +80,4 @@ $(document).ajaxStop(function (e) {
   });
 });
 
-// Hook Ajax load event
-function animate_month_switch(new_data, title_element){
-
-  var new_data = 1
-  console.log(new_data);
-}
 });

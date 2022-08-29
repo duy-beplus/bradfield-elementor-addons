@@ -106,21 +106,20 @@ class Upcoming_Events extends \Elementor\Widget_Base {
                 ),
             ),
          );
+       }
+       $the_featured_query = new WP_Query( $args_featured );
+       $count_featured = $the_featured_query->post_count;
 
-         $the_featured_query = new WP_Query( $args_featured );
-         $count_featured = $the_featured_query->post_count;
-
-         if ($count_featured == 2) {
-           $upcoming_event_per_page = 1;
-         }
-         elseif ($count_featured == 1)
-         {
-           $upcoming_event_per_page = 2;
-         }
-         elseif ($count_featured == 0)
-         {
-           $upcoming_event_per_page = 3;
-         }
+       if ($count_featured == 2) {
+         $upcoming_event_per_page = 1;
+       }
+       elseif ($count_featured == 1)
+       {
+         $upcoming_event_per_page = 2;
+       }
+       elseif ($count_featured == 0)
+       {
+         $upcoming_event_per_page = 3;
        }
 
       if ($settings['show_events_ticket'] == 'yes') {
@@ -193,6 +192,11 @@ class Upcoming_Events extends \Elementor\Widget_Base {
           $query_passed_event = new WP_Query( $args_event_pased );
       ?>
       <div class="upcoming-event-wrapper">
+        <?php
+              print_r($count_featured);
+              print_r($upcoming_event_per_page);
+              print_r($passed_event_per_page);
+         ?>
         <!-- Featured events -->
         <?php
         if ($settings['show_feature_events'] == 'yes'):
@@ -201,7 +205,11 @@ class Upcoming_Events extends \Elementor\Widget_Base {
         while ( $the_featured_query->have_posts() ) : $the_featured_query->the_post();
           // Do Stuff
           ?>
-          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center;">
+          <?php if ( has_post_thumbnail() ) { ?>
+          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+          <?php } else {?>
+            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+          <?php  } ?>
           <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
           <div class="upcoming-event-item-block" >
             <?php
@@ -237,7 +245,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
         endif;
         // Reset Post Data
         wp_reset_postdata();
-        ?>
+        ?><!-- /Featured events -->
 
         <!-- Upcoming events -->
       <?php
@@ -247,7 +255,11 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       while ( $the_query->have_posts() ) : $the_query->the_post();
         // Do Stuff
         ?>
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center;">
+        <?php if ( has_post_thumbnail() ) { ?>
+        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+        <?php } else {?>
+          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+        <?php  } ?>
         <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
         <div class="upcoming-event-item-block" >
           <?php
@@ -283,7 +295,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       endif;
       // Reset Post Data
       wp_reset_postdata();
-      ?>
+      ?><!-- /Upcoming events -->
 
       <!-- Passed events -->
       <?php
@@ -293,7 +305,11 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       while ( $query_passed_event->have_posts() ) : $query_passed_event->the_post();
         // Do Stuff
         ?>
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center;">
+        <?php if ( has_post_thumbnail() ) { ?>
+        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+        <?php } else {?>
+          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+        <?php  } ?>
         <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
         <div class="upcoming-event-item-block" >
           <span class="event-type" style="background-color: #c7443a;">Passed event</span>
@@ -313,7 +329,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       endif;
       // Reset Post Data
       wp_reset_postdata();
-      ?>
+      ?><!-- /Passed events -->
       </div>
       <?php
 
