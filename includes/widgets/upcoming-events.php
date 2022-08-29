@@ -192,11 +192,6 @@ class Upcoming_Events extends \Elementor\Widget_Base {
           $query_passed_event = new WP_Query( $args_event_pased );
       ?>
       <div class="upcoming-event-wrapper">
-        <?php
-              print_r($count_featured);
-              print_r($upcoming_event_per_page);
-              print_r($passed_event_per_page);
-         ?>
         <!-- Featured events -->
         <?php
         if ($settings['show_feature_events'] == 'yes'):
