@@ -252,9 +252,9 @@ class Upcoming_Events extends \Elementor\Widget_Base {
           // Do Stuff
           ?>
           <?php if ( has_post_thumbnail() ) { ?>
-          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
           <?php } else {?>
-            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
           <?php  } ?>
           <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
           <div class="upcoming-event-item-block" >
@@ -304,9 +304,9 @@ class Upcoming_Events extends \Elementor\Widget_Base {
           // Do Stuff
           ?>
           <?php if ( has_post_thumbnail() ) { ?>
-          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
           <?php } else {?>
-            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
           <?php  } ?>
           <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
           <div class="upcoming-event-item-block" >
@@ -354,9 +354,9 @@ class Upcoming_Events extends \Elementor\Widget_Base {
         // Do Stuff
         ?>
         <?php if ( has_post_thumbnail() ) { ?>
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
         <?php } else {?>
-          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
         <?php  } ?>
         <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
         <div class="upcoming-event-item-block" >
@@ -404,9 +404,9 @@ class Upcoming_Events extends \Elementor\Widget_Base {
         // Do Stuff
         ?>
         <?php if ( has_post_thumbnail() ) { ?>
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') top center">
+        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
         <?php } else {?>
-          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') top center;">
+          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
         <?php  } ?>
         <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
         <div class="upcoming-event-item-block" >
