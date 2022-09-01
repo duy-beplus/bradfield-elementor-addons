@@ -446,7 +446,8 @@ class LoadEventByOptions extends Widget_Base
                                     echo '<div class="warning">Upcoming Event</div>';
                                 }
                                 ?>
-                                <?php echo gmdate("F d, Y - g:ia", get_post_meta(get_the_ID(), 'evcal_srow', true)); ?>
+                                <?php echo gmdate("F d, Y - g:i
+ a", get_post_meta(get_the_ID(), 'evcal_srow', true)); ?>
                             </div>
                         </a>
                 <?php

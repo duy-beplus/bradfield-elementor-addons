@@ -1,4 +1,5 @@
-jQuery(function ($) {
+jQuery(function ($)
+ {
     /**
        * @param $scope The Widget wrapper element as a jQuery element
      * @param $ The jQuery alias
