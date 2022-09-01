@@ -286,7 +286,7 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-section-loadmore input' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .event-section-loadmore input' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -296,7 +296,7 @@ class LoadEventByOptions extends Widget_Base
                 'label' => 'Background Color',
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .term-section-loadmore input' => 'background: {{VALUE}} !important',
+                    '{{WRAPPER}} .event-section-loadmore input' => 'background: {{VALUE}} !important',
                 ],
             ]
         );
@@ -427,32 +427,34 @@ class LoadEventByOptions extends Widget_Base
         }
 ?>
         <section class="event-section">
-            <?php
-            if ($query->have_posts()) :
-                while ($query->have_posts()) : $query->the_post();
-            ?>
-                    <a href="<?php echo get_the_permalink(); ?>" class="event-items">
-                        <div class="event-items-thumbnail"><?php the_post_thumbnail('full'); ?></div>
-                        <div class="event-items-info">
-                            <div class="event-info-title"><?php echo get_the_title(); ?></div>
-                            <div class="event-info-desc"><?php echo get_post_meta(get_the_ID(), 'evcal_subtitle', true) ?></div>
-                        </div>
-                        <div class="event-date">
-                            <?php
-                            if ($settings['select_options'] === 'ticket') {
-                                echo '<div class="warning">Ticket</div>';
-                            } elseif ($settings['select_options'] === 'upcoming') {
-                                echo '<div class="warning">Upcoming Event</div>';
-                            }
-                            ?>
-                            <?php echo gmdate("F d, Y - g:i a", get_post_meta(get_the_ID(), 'evcal_srow', true)); ?>
-                        </div>
-                    </a>
-            <?php
-                endwhile;
-            endif;
-            wp_reset_postdata();
-            ?>
+            <div class="event-section-wrap">
+                <?php
+                if ($query->have_posts()) :
+                    while ($query->have_posts()) : $query->the_post();
+                ?>
+                        <a href="<?php echo get_the_permalink(); ?>" class="event-items">
+                            <div class="event-items-thumbnail"><?php the_post_thumbnail('full'); ?></div>
+                            <div class="event-items-info">
+                                <div class="event-info-title"><?php echo get_the_title(); ?></div>
+                                <div class="event-info-desc"><?php echo get_post_meta(get_the_ID(), 'evcal_subtitle', true) ?></div>
+                            </div>
+                            <div class="event-date">
+                                <?php
+                                if ($settings['select_options'] === 'ticket') {
+                                    echo '<div class="warning">Ticket</div>';
+                                } elseif ($settings['select_options'] === 'upcoming') {
+                                    echo '<div class="warning">Upcoming Event</div>';
+                                }
+                                ?>
+                                <?php echo gmdate("F d, Y - g:ia", get_post_meta(get_the_ID(), 'evcal_srow', true)); ?>
+                            </div>
+                        </a>
+                <?php
+                    endwhile;
+                endif;
+                wp_reset_postdata();
+                ?>
+            </div>
             <div class="event-section-loader">
                 <div class="event-section-loadmore">
                     <input type="submit" value="Load more" id="load-more">
