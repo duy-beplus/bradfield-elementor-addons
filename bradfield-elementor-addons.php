@@ -39,3 +39,23 @@ function add_elementor_widget_categories($elements_manager)
     );
 }
 add_action('elementor/elements/categories_registered', 'add_elementor_widget_categories');
+
+/**
+ * Update the query by specific post meta.
+ *
+ */
+function events_query_by_post_meta( $query ) {
+	// Get current meta Query
+	$meta_query = $query->get( 'meta_query' );
+	// If there is no meta query when this filter runs, it should be initialized as an empty array.
+	if ( ! $meta_query ) {
+		$meta_query = [];
+	}
+	// Append our meta query
+	$meta_query[] = [
+		'key' => 'evotx_tix',
+		'value' => 'yes',
+	];
+	$query->set( 'meta_query', $meta_query );
+}
+add_action( 'elementor/query/meta_query', 'events_query_by_post_meta' );
