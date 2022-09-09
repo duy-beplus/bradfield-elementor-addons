@@ -125,7 +125,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       $now = current_time('timestamp');
       $show_events_option = $settings['show_events_ticket'];
       $events_list = $settings['event_list'];
-
+      $args_featured = [];
 
       if ($settings['show_feature_events'] == 'yes') {
       $args_featured = array(

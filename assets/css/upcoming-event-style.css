@@ -89,7 +89,9 @@
 }
 .upcoming-event-item:hover .upcomming-btn-buy-ticket{
   display: block;
-  transform: translate(58%, -154px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 34px);
 }
 
 
@@ -110,9 +112,5 @@
 .upcoming-event-item .upcoming-event-title{
   font-size: 30px;
   line-height: 36px;
-}
-.upcoming-event-item:hover .upcomming-btn-buy-ticket{
-  display: block;
-  transform: translate(42%, -140px);
 }
 }
