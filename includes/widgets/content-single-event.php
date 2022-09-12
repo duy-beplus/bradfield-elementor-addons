@@ -85,7 +85,6 @@ class Content_single_Event extends \Elementor\Widget_Base {
 
       ?>
       <div id="content-single-event" class="content-single-container">
-        <?php print_r($get_event);
         ?>
         <div class="event-info-block">
           <!-- heading -->
