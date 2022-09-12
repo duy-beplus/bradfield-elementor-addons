@@ -127,7 +127,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       $events_list = $settings['event_list'];
       $args_featured = [];
 
-      if ($settings['show_feature_events'] == 'yes') {
+    if ($settings['show_feature_events'] == 'yes') {
       $args_featured = array(
             'post_type'       => 'ajde_events',
             'posts_per_page'	=> 3,
@@ -151,7 +151,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
                 ),
             ),
          );
-       }
+     }
        $the_featured_query = new WP_Query( $args_featured );
        $count_featured = $the_featured_query->post_count;
 
@@ -254,7 +254,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
           <?php if ( has_post_thumbnail() ) { ?>
           <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
           <?php } else {?>
-            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
+            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png';?>') center center;">
           <?php  } ?>
           <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
           <div class="upcoming-event-item-block" >

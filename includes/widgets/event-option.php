@@ -478,7 +478,7 @@ class LoadEventByOptions extends Widget_Base
 
                 foreach ($event_array_time as $event_time):
                   ?>
-                    <a href="<?php echo get_the_permalink(); ?>" class="event-items">
+                    <a href="<?php echo get_the_permalink($event_time['id']); ?>" class="event-items">
                           <div class="event-items-thumbnail"><?php echo get_the_post_thumbnail($event_time['id'], 'full'); ?></div>
                         <div class="event-items-info">
                             <div class="event-info-title"><?php echo $event_time['title']; ?></div>
