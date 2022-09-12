@@ -429,31 +429,74 @@ class LoadEventByOptions extends Widget_Base
         <section class="event-section">
             <div class="event-section-wrap">
                 <?php
+                $event_array_time = [];
                 if ($query->have_posts()) :
                     while ($query->have_posts()) : $query->the_post();
-                ?>
-                        <a href="<?php echo get_the_permalink(); ?>" class="event-items">
-                            <div class="event-items-thumbnail"><?php the_post_thumbnail('full'); ?></div>
-                            <div class="event-items-info">
-                                <div class="event-info-title"><?php echo get_the_title(); ?></div>
-                                <div class="event-info-desc"><?php echo get_post_meta(get_the_ID(), 'evcal_subtitle', true) ?></div>
-                            </div>
-                            <div class="event-date">
-                                <?php
-                                if ($settings['select_options'] === 'ticket') {
-                                    echo '<div class="warning">Ticket</div>';
-                                } elseif ($settings['select_options'] === 'upcoming') {
-                                    echo '<div class="warning">Upcoming Event</div>';
-                                }
-                                ?>
-                                <?php echo gmdate("F d, Y - g:i
- a", get_post_meta(get_the_ID(), 'evcal_srow', true)); ?>
-                            </div>
-                        </a>
-                <?php
-                    endwhile;
+                    $event_repeat = get_post_meta(get_the_ID(), 'repeat_intervals', true);
+
+                    $event_timestamp = get_post_meta(get_the_ID(), 'evcal_srow', true);
+
+                    if ($event_repeat) {
+                      $repeat_interval_num = get_post_meta(get_the_ID(), 'evcal_rep_num', true);
+                      $interval_rp_times = get_post_meta(get_the_ID(), 'repeat_intervals')[0];
+
+                      for ($i=0; $i <= $repeat_interval_num ; $i++) {
+                          $start_time = $interval_rp_times[$i][0];
+                          $event_item = array(
+                              'id' => get_the_ID(),
+                              'title' => get_the_title(),
+                              'start_time' => $start_time,
+                            );
+                          array_push($event_array_time, $event_item);
+                      }
+                    } else {
+                       if ( ! empty ($event_array_time) ) {
+                         $event_item = array(
+                             'id' => get_the_ID(),
+                             'title' => get_the_title(),
+                             'start_time' => get_post_meta(get_the_ID(), 'evcal_srow', true),
+                           );
+                         array_push($event_array_time, $event_item);
+                       } else {
+                           $event_item = array(
+                               'id' => get_the_ID(),
+                               'title' => get_the_title(),
+                               'start_time' => get_post_meta(get_the_ID(), 'evcal_srow', true),
+                             );
+                           array_push($event_array_time, $event_item);
+                       }
+                    }
+                  endwhile;
                 endif;
                 wp_reset_postdata();
+
+                // Sort events array by timestamp
+                usort($event_array_time, function ($item1, $item2) {
+                  if ($item1['start_time'] == $item2['start_time']) return 0;
+                  return $item1['start_time'] < $item2['start_time'] ? -1 : 1;
+                });
+
+                foreach ($event_array_time as $event_time):
+                  ?>
+                    <a href="<?php echo get_the_permalink(); ?>" class="event-items">
+                        <div class="event-items-thumbnail"><?php echo get_the_post_thumbnail($event_time['id'], 'full'); ?></div>
+                        <div class="event-items-info">
+                            <div class="event-info-title"><?php echo $event_time['title']; ?></div>
+                            <div class="event-info-desc"><?php echo get_post_meta($event_time['id'], 'evcal_subtitle', true) ?></div>
+                        </div>
+                        <div class="event-date">
+                            <?php
+                            if ($settings['select_options'] === 'ticket') {
+                                echo '<div class="warning">Ticket</div>';
+                            } elseif ($settings['select_options'] === 'upcoming') {
+                                echo '<div class="warning">Upcoming Event</div>';
+                            }
+                            ?>
+                            <?php echo gmdate("F d, Y - g:i:a", $event_time['start_time']); ?>
+                        </div>
+                    </a>
+                    <?php
+                endforeach;
                 ?>
             </div>
             <div class="event-section-loader">

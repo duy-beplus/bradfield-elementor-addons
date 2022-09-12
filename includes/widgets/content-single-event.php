@@ -85,6 +85,10 @@ class Content_single_Event extends \Elementor\Widget_Base {
 
       ?>
       <div id="content-single-event" class="content-single-container">
+        <?php print_r($get_event);
+        $interval = $get_event['repeat_intervals'];
+        print_r(unserialize($interval[0]));
+        ?>
         <div class="event-info-block">
           <!-- heading -->
           <div class="event-info-heading">
