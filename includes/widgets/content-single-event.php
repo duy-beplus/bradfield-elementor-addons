@@ -85,7 +85,6 @@ class Content_single_Event extends \Elementor\Widget_Base {
 
       ?>
       <div id="content-single-event" class="content-single-container">
-        ?>
         <div class="event-info-block">
           <!-- heading -->
           <div class="event-info-heading">
