@@ -41,43 +41,43 @@ $(document).mouseup(function (e) {
 });
 
 // hide event after load page 1.5s
-const myTimeout = setTimeout(hideEvent, 1500);
-function hideEvent(){
-  $('.search-result .date_row').each(function() {
-    let number_row = $(this).children().length;
-    if (number_row > 3) {
-      $(".search-result .date_row .row:nth-of-type(n + 4)").hide();
-      $(this).append("<span class='btn-view-all'>View all "+number_row+" events</span>");
-    }
-  });
+// const myTimeout = setTimeout(hideEvent, 1500);
+// function hideEvent(){
+//   $('.search-result .date_row').each(function() {
+//     let number_row = $(this).children().length;
+//     if (number_row > 3) {
+//       $(".search-result .date_row .row:nth-of-type(n + 4)").hide();
+//       $(this).append("<span class='btn-view-all'>View all "+number_row+" events</span>");
+//     }
+//   });
 
-  $(".search-result .btn-view-all").click(function() {
-    let wrapper = $(this).closest('.search-result .date_row');
-    wrapper.children(".row:nth-of-type(n + 4)").slideToggle();
-  });
-
-  // let evosv_grid_items = $('.search-result .evosv_grid .date_row').length;
-  // console.log(evosv_grid_items);
-  // if (evosv_grid_items > 3) {
-  //   $(".search-result .evosv_grid .date_row:nth-of-type(n + 4)").hide();
-  //   $(".search-result .evosv_grid").append("<div class='btn-load-more'>load more</div>");
-  // }
-};
+//   $(".search-result .btn-view-all").click(function() {
+//     let wrapper = $(this).closest('.search-result .date_row');
+//     wrapper.children(".row:nth-of-type(n + 4)").slideToggle();
+//   });
+//
+//   // let evosv_grid_items = $('.search-result .evosv_grid .date_row').length;
+//   // console.log(evosv_grid_items);
+//   // if (evosv_grid_items > 3) {
+//   //   $(".search-result .evosv_grid .date_row:nth-of-type(n + 4)").hide();
+//   //   $(".search-result .evosv_grid").append("<div class='btn-load-more'>load more</div>");
+//   // }
+// };
 
 // hide event when ajax load stop
-$(document).ajaxStop(function (e) {
-  $('.search-result .date_row').each(function() {
-    let number_row = $(this).children().length;
-    if (number_row > 3) {
-      $(".search-result .date_row .row:nth-of-type(n + 4)").hide();
-      $(this).append("<span class='btn-view-all'>View all "+number_row+" events</span>");
-    }
-  });
-
-  $(".search-result .btn-view-all").click(function() {
-    let wrapper = $(this).closest('.search-result .date_row');
-    wrapper.children(".row:nth-of-type(n + 4)").slideToggle();
-  });
-});
+// $(document).ajaxStop(function (e) {
+//   $('.search-result .date_row').each(function() {
+//     let number_row = $(this).children().length;
+//     if (number_row > 3) {
+//       $(".search-result .date_row .row:nth-of-type(n + 4)").hide();
+//       $(this).append("<span class='btn-view-all'>View all "+number_row+" events</span>");
+//     }
+//   });
+//
+//   $(".search-result .btn-view-all").click(function() {
+//     let wrapper = $(this).closest('.search-result .date_row');
+//     wrapper.children(".row:nth-of-type(n + 4)").slideToggle();
+//   });
+// });
 
 });
