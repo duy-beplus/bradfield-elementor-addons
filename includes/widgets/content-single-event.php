@@ -82,7 +82,6 @@ class Content_single_Event extends \Elementor\Widget_Base {
 
       // get just one field from the meta array
       $one_field = $EVENT->get_eprop('field_name');
-
       ?>
       <div id="content-single-event" class="content-single-container">
         <div class="event-info-block">

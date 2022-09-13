@@ -430,17 +430,19 @@ class LoadEventByOptions extends Widget_Base
             <div class="event-section-wrap">
                 <?php
                 $event_array_time = [];
+
                 if ($query->have_posts()) :
                     while ($query->have_posts()) : $query->the_post();
-                    $event_repeat = get_post_meta(get_the_ID(), 'repeat_intervals', true);
+                    $event_repeat = get_post_meta(get_the_ID(), 'evcal_repeat', true);
+                    $event_repeat_intervals = get_post_meta(get_the_ID(), 'repeat_intervals', true);
 
                     $event_timestamp = get_post_meta(get_the_ID(), 'evcal_srow', true);
 
-                    if ($event_repeat) {
+                    if ($event_repeat == 'yes' && $event_repeat_intervals) {
                       $repeat_interval_num = get_post_meta(get_the_ID(), 'evcal_rep_num', true);
                       $interval_rp_times = get_post_meta(get_the_ID(), 'repeat_intervals')[0];
 
-                      for ($i=0; $i <= $repeat_interval_num ; $i++) {
+                      for ($i = 0; $i <= $repeat_interval_num ; $i++) {
                           $start_time = $interval_rp_times[$i][0];
                           $event_item = array(
                               'id' => get_the_ID(),
@@ -450,21 +452,12 @@ class LoadEventByOptions extends Widget_Base
                           array_push($event_array_time, $event_item);
                       }
                     } else {
-                       if ( ! empty ($event_array_time) ) {
-                         $event_item = array(
-                             'id' => get_the_ID(),
-                             'title' => get_the_title(),
-                             'start_time' => get_post_meta(get_the_ID(), 'evcal_srow', true),
-                           );
-                         array_push($event_array_time, $event_item);
-                       } else {
                            $event_item = array(
                                'id' => get_the_ID(),
                                'title' => get_the_title(),
                                'start_time' => get_post_meta(get_the_ID(), 'evcal_srow', true),
                              );
                            array_push($event_array_time, $event_item);
-                       }
                     }
                   endwhile;
                 endif;
