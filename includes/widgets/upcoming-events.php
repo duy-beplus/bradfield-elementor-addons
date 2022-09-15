@@ -113,7 +113,61 @@ class Upcoming_Events extends \Elementor\Widget_Base {
 				'default' => 3,
 			]
 		);
+    $this->end_controls_section();
 
+    $this->start_controls_section(
+    'style_title',
+      [
+        'label' => esc_html__( 'Title', 'bradfield-elementor-addon' ),
+        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+      ]
+    );
+    $this->add_control(
+			'title_color',
+			[
+				'label' => esc_html__( 'Title Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .upcoming-event-title' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+    $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'selector' => '{{WRAPPER}} .upcoming-event-title',
+			]
+		);
+
+    $this->end_controls_section();
+
+    $this->start_controls_section(
+    'style_date',
+      [
+        'label' => esc_html__( 'Date', 'bradfield-elementor-addon' ),
+        'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+      ]
+    );
+    $this->add_control(
+			'date_color',
+			[
+				'label' => esc_html__( 'Date Color', 'plugin-name' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .event-meta-date' => 'color: {{VALUE}}',
+				],
+			]
+		);
+
+    $this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'date_typography',
+				'selector' => '{{WRAPPER}} .event-meta-date',
+			]
+		);
     $this->end_controls_section();
   }
 
@@ -239,16 +293,17 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       <div class="upcoming-event-wrapper">
         <!-- Choose Events -->
         <?php
-        foreach ($events_list as $event_list_item):
-        $args_events_id = array(
-              'post_type'       => 'ajde_events',
-              'posts_per_page'	=> 1,
-              'p'               => $event_list_item['event_id'],
-        );
+        if ($settings['show_choose_events'] == 'yes'){ 
+          foreach ($events_list as $event_list_item):
+          $args_events_id = array(
+                'post_type'       => 'ajde_events',
+                'posts_per_page'	=> 1,
+                'p'               => $event_list_item['event_id'],
+          );
         $query_events_id = new WP_Query( $args_events_id );
         $count_choosed = $query_events_id->post_count;
         if ( $query_events_id->have_posts() ) :
-        while ( $query_events_id->have_posts() ) : $query_events_id->the_post();
+          while ( $query_events_id->have_posts() ) : $query_events_id->the_post();
           // Do Stuff
           ?>
           <?php if ( has_post_thumbnail() ) { ?>
@@ -263,7 +318,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
              if ($events_meta['_featured'][0] == 'yes'): ?>
               <span class="event-type" style="background-color: orange;"><i aria-hidden="true" class="fas fa-star"></i> Featured event</span>
             <?php else:?>
-              <span class="event-type">Featured event</span>
+              <span class="event-type">Upcoming event</span>
               <?php endif; ?>
             <span class="event-meta-date">
             <?php
@@ -284,17 +339,18 @@ class Upcoming_Events extends \Elementor\Widget_Base {
               Buy Ticket
             </a>
           <?php endif; ?>
-        </div>
-        <?php
-        endwhile;
+          </div>
+          <?php
+          endwhile;
         endif;
         // Reset Post Data
         wp_reset_postdata();
         endforeach;
+        }
         ?><!-- /Choose Events -->
 
         <!-- Hide Event if you want to choose event -->
-        <?php if ($settings['show_choose_events'] !== 'yes'): ?>
+        <?php if ($settings['show_choose_events'] !== 'yes'){ ?>
         <!-- Featured events -->
         <?php
         if ($settings['show_feature_events'] == 'yes'):
@@ -430,6 +486,6 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       ?><!-- /Passed events -->
       </div>
       <?php
-    endif;
+    }
   }
 }

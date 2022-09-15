@@ -37,24 +37,24 @@
   left: 18px;
   color: #fff;
   font-size: 14px;
-  font-family: 'PT Sans Regular';
+  font-family: "PT Sans", Roboto;
   background-color: #4CAF50;
     padding: 2px 6px;
     border-radius: 8px;
 }
 .upcoming-event-item .event-meta-date{
   position: absolute;
-  top: 16px;
-  right: 18px;
+  top: 44px;
+  left: 20px;
   color: #fff;
   font-size: 14px;
-  font-family: 'PT Sans Regular';
+  font-family: "PT Sans", Roboto;
 }
 .upcoming-event-item .is-featured{
   color: #fff;
   background-color: orange;
   font-size: 16px;
-  font-family: 'PT Sans Regular';
+  font-family: "PT Sans", Roboto;
   padding: 2px 6px;
   border-radius: 8px;
   text-transform: capitalize;
