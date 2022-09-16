@@ -472,7 +472,15 @@ class LoadEventByOptions extends Widget_Base
                 foreach ($event_array_time as $event_time):
                   ?>
                     <a href="<?php echo get_the_permalink($event_time['id']); ?>" class="event-items">
-                          <div class="event-items-thumbnail"><?php echo get_the_post_thumbnail($event_time['id'], 'full'); ?></div>
+                        <div class="event-items-thumbnail">
+                          <?php
+                          if ( has_post_thumbnail($event_time['id']) ) {
+                            echo get_the_post_thumbnail($event_time['id'], 'full');
+                          }
+                          else { ?>
+                            <img src="<?php echo plugins_url(); ?>/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png" alt="">
+                          <?php  }  ?>
+                        </div>
                         <div class="event-items-info">
                             <div class="event-info-title"><?php echo $event_time['title']; ?></div>
                             <div class="event-info-desc"><?php echo get_post_meta($event_time['id'], 'evcal_subtitle', true) ?></div>
