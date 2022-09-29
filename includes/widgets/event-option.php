@@ -367,6 +367,10 @@ class LoadEventByOptions extends Widget_Base
         $this->register_style_control();
     }
 
+    protected function bradfield_get_events_repeat_intervals(){
+      // $event_repeat_intervals = get_post_meta(get_the_ID(), 'repeat_intervals', true);
+    }
+
     protected function render()
     {
         $settings = $this->get_settings_for_display();
@@ -378,10 +382,21 @@ class LoadEventByOptions extends Widget_Base
             'orderby'            => 'meta_value',
             'meta_key' => 'evcal_srow',
             'meta_query' => array(
+              'relation' => 'OR',
                 array(
-                    'key' => 'evcal_erow',
+                    'key' => 'evcal_srow',
                     'value' => $now,
                     'compare' => '>',
+                ),
+                array(
+                    'key' => 'repeat_intervals',
+                    'value' => $now,
+                    'compare' => '>',
+                ),
+                array(
+                    'key' => 'evcal_repeat',
+                    'value' => 'yes',
+                    'compare' => '=',
                 ),
             ),
         );
@@ -411,11 +426,23 @@ class LoadEventByOptions extends Widget_Base
             'orderby'            => 'meta_value',
             'meta_key' => 'evcal_srow',
             'meta_query' => array(
+              'relation' => 'OR',
                 array(
-                    'key' => 'evcal_erow',
+                    'key' => 'evcal_srow',
                     'value' => $now,
                     'compare' => '>',
                 ),
+                array(
+                    'key' => 'repeat_intervals',
+                    'value' => $now,
+                    'compare' => '>',
+                ),
+                array(
+                    'key' => 'evcal_repeat',
+                    'value' => 'yes',
+                    'compare' => '=',
+                ),
+
             ),
         );
         if ($settings['select_options'] === 'all') {
@@ -433,7 +460,9 @@ class LoadEventByOptions extends Widget_Base
 
                 if ($query->have_posts()) :
                     while ($query->have_posts()) : $query->the_post();
+
                     $event_repeat = get_post_meta(get_the_ID(), 'evcal_repeat', true);
+
                     $event_repeat_intervals = get_post_meta(get_the_ID(), 'repeat_intervals', true);
 
                     $event_timestamp = get_post_meta(get_the_ID(), 'evcal_srow', true);
@@ -470,6 +499,7 @@ class LoadEventByOptions extends Widget_Base
                 });
 
                 foreach ($event_array_time as $event_time):
+                  if ($event_time['start_time'] > $now) {
                   ?>
                     <a href="<?php echo get_the_permalink($event_time['id']); ?>" class="event-items">
                         <div class="event-items-thumbnail">
@@ -497,6 +527,7 @@ class LoadEventByOptions extends Widget_Base
                         </div>
                     </a>
                     <?php
+                    }
                 endforeach;
                 ?>
             </div>

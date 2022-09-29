@@ -71,7 +71,12 @@ class Content_single_Event extends \Elementor\Widget_Base {
       $args = array(
         'post_type'   => 'product'
       );
+
+      $now = current_time('timestamp');
+
       $get_event = get_post_meta( $event_id );
+
+      $event_repeat_intervals = get_post_meta(get_the_ID(), 'repeat_intervals', true);
 
       $get_ticket_status = $get_event['evotx_tix'];
 

@@ -181,31 +181,31 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       $events_list = $settings['event_list'];
       $args_featured = [];
 
-    if ($settings['show_feature_events'] == 'yes') {
-      $args_featured = array(
-            'post_type'       => 'ajde_events',
-            'posts_per_page'	=> 3,
-            'order'		      	=> 'ASC',
-            'meta_key'			=> 'evcal_srow',
-            'orderby'			=> 'meta_value',
-            'meta_query' => array(
-              'relation' => 'AND',
-                array(
-                    'key' => 'evcal_srow',
-                    'value' => $now,
-                    'compare' => '>',
-                ),
-                array(
-                    'key' => 'evotx_tix',
-                    'value' => 'yes',
-                ),
-                array(
-                    'key' => '_featured',
-                    'value' => 'yes',
-                ),
-            ),
-         );
-     }
+      if ($settings['show_feature_events'] == 'yes') {
+        $args_featured = array(
+              'post_type'       => 'ajde_events',
+              'posts_per_page'	=> 3,
+              'order'		      	=> 'ASC',
+              'meta_key'			=> 'evcal_srow',
+              'orderby'			=> 'meta_value',
+              'meta_query' => array(
+                'relation' => 'AND',
+                  array(
+                      'key' => 'evcal_srow',
+                      'value' => $now,
+                      'compare' => '>',
+                  ),
+                  array(
+                      'key' => 'evotx_tix',
+                      'value' => 'yes',
+                  ),
+                  array(
+                      'key' => '_featured',
+                      'value' => 'yes',
+                  ),
+              ),
+           );
+       }
        $the_featured_query = new WP_Query( $args_featured );
        $count_featured = $the_featured_query->post_count;
 
@@ -221,43 +221,43 @@ class Upcoming_Events extends \Elementor\Widget_Base {
          $upcoming_event_per_page = 3;
        }
 
-      if ($settings['show_events_ticket'] == 'yes') {
-        $args = array(
-              'post_type'       => 'ajde_events',
-              'posts_per_page'	=> $upcoming_event_per_page,
-  	          'order'		      	=> 'ASC',
-              'meta_key'			=> 'evcal_srow',
-  	          'orderby'			=> 'meta_value',
-              'meta_query' => array(
-                  'relation' => 'AND',
-                  array(
-                      'key' => 'evcal_srow',
-                      'value' => $now,
-                      'compare' => '>',
-                  ),
-                  array(
-                      'key' => 'evotx_tix',
-                      'value' => 'yes',
-                  ),
-              ),
-           );
-      }
-      else {
-        $args = array(
-              'post_type'       => 'ajde_events',
-              'posts_per_page'	=> $upcoming_event_per_page,
-  	          'order'		      	=> 'ASC',
-              'meta_key'			=> 'evcal_srow',
-  	          'orderby'			=> 'meta_value',
-              'meta_query' => array(
-                  array(
-                      'key' => 'evcal_srow',
-                      'value' => $now,
-                      'compare' => '>',
-                  ),
-              ),
-           );
-      }
+        if ($settings['show_events_ticket'] == 'yes') {
+          $args = array(
+                'post_type'       => 'ajde_events',
+                'posts_per_page'	=> $upcoming_event_per_page,
+    	          'order'		      	=> 'ASC',
+                'meta_key'			=> 'evcal_srow',
+    	          'orderby'			=> 'meta_value',
+                'meta_query' => array(
+                    'relation' => 'AND',
+                    array(
+                        'key' => 'evcal_srow',
+                        'value' => $now,
+                        'compare' => '>',
+                    ),
+                    array(
+                        'key' => 'evotx_tix',
+                        'value' => 'yes',
+                    ),
+                ),
+             );
+        }
+        else {
+          $args = array(
+                'post_type'       => 'ajde_events',
+                'posts_per_page'	=> $upcoming_event_per_page,
+    	          'order'		      	=> 'ASC',
+                'meta_key'			=> 'evcal_srow',
+    	          'orderby'			=> 'meta_value',
+                'meta_query' => array(
+                    array(
+                        'key' => 'evcal_srow',
+                        'value' => $now,
+                        'compare' => '>',
+                    ),
+                ),
+             );
+        }
 
         $the_query = new WP_Query( $args );
         $count_upcoming = $the_query->post_count;
@@ -274,7 +274,7 @@ class Upcoming_Events extends \Elementor\Widget_Base {
           $passed_event_per_page = 3;
         }
 
-         $args_event_pased = array(
+         $args_event_passed = array(
                'post_type'       => 'ajde_events',
                'posts_per_page'	=> $passed_event_per_page,
    	           'order'		      	=> 'DESC',
@@ -288,114 +288,113 @@ class Upcoming_Events extends \Elementor\Widget_Base {
                    ) ,
                ) ,
             );
-          $query_passed_event = new WP_Query( $args_event_pased );
+          $query_passed_event = new WP_Query( $args_event_passed );
       ?>
       <div class="upcoming-event-wrapper">
-        <!-- Choose Events -->
+        <!-- Choose Events by ID-->
         <?php
-        if ($settings['show_choose_events'] == 'yes'){ 
-          foreach ($events_list as $event_list_item):
-          $args_events_id = array(
-                'post_type'       => 'ajde_events',
-                'posts_per_page'	=> 1,
-                'p'               => $event_list_item['event_id'],
-          );
-        $query_events_id = new WP_Query( $args_events_id );
-        $count_choosed = $query_events_id->post_count;
-        if ( $query_events_id->have_posts() ) :
-          while ( $query_events_id->have_posts() ) : $query_events_id->the_post();
-          // Do Stuff
-          ?>
-          <?php if ( has_post_thumbnail() ) { ?>
-          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
-          <?php } else {?>
-            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png';?>') center center;">
-          <?php  } ?>
-          <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
-          <div class="upcoming-event-item-block" >
-            <?php
-              $events_meta = get_post_meta( get_the_ID());
-             if ($events_meta['_featured'][0] == 'yes'): ?>
-              <span class="event-type" style="background-color: orange;"><i aria-hidden="true" class="fas fa-star"></i> Featured event</span>
-            <?php else:?>
-              <span class="event-type">Upcoming event</span>
-              <?php endif; ?>
-            <span class="event-meta-date">
-            <?php
-              $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
-              echo gmdate("F d, Y - g:i a", $event_meta_date);
-             ?>
-           </span>
-
-            <h3 class="upcoming-event-title">
-               <?php echo the_title(); ?>
-             </h3>
-          </div>
-          </a>
-          <?php
-            $get_event = get_post_meta( get_the_ID());
-            if ($get_event['evotx_tix'][0] == 'yes'): ?>
-            <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
-              Buy Ticket
-            </a>
-          <?php endif; ?>
-          </div>
-          <?php
-          endwhile;
-        endif;
-        // Reset Post Data
-        wp_reset_postdata();
+          if ($settings['show_choose_events'] == 'yes'){
+            foreach ($events_list as $event_list_item):
+              $args_events_id = array(
+                    'post_type'       => 'ajde_events',
+                    'posts_per_page'	=> 1,
+                    'p'               => $event_list_item['event_id'],
+              );
+              $query_events_id = new WP_Query( $args_events_id );
+              $count_choosed = $query_events_id->post_count;
+              if ( $query_events_id->have_posts() ) :
+                while ( $query_events_id->have_posts() ) : $query_events_id->the_post();
+                  // Do Stuff
+                  ?>
+                    <?php if ( has_post_thumbnail() ) { ?>
+                      <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
+                    <?php } else {?>
+                      <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png';?>') center center;">
+                    <?php  } ?>
+                        <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
+                          <div class="upcoming-event-item-block" >
+                            <?php
+                              $events_meta = get_post_meta( get_the_ID());
+                              if ($events_meta['_featured'][0] == 'yes'): ?>
+                                <span class="event-type" style="background-color: orange;"><i aria-hidden="true" class="fas fa-star"></i> Featured event</span>
+                              <?php else:?>
+                                <span class="event-type">Upcoming event</span>
+                              <?php endif; ?>
+                                <span class="event-meta-date">
+                                  <?php
+                                    $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
+                                    echo gmdate("F d, Y - g:i a", $event_meta_date);
+                                   ?>
+                               </span>
+                              <h3 class="upcoming-event-title">
+                                 <?php echo the_title(); ?>
+                               </h3>
+                          </div>
+                        </a>
+                        <?php
+                        $get_event = get_post_meta( get_the_ID());
+                        if ($get_event['evotx_tix'][0] == 'yes'): ?>
+                        <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
+                          Buy Ticket
+                        </a>
+                      <?php endif; ?>
+                      </div>
+                      <?php
+                endwhile;
+              endif;
+            // Reset Post Data
+            wp_reset_postdata();
         endforeach;
         }
-        ?><!-- /Choose Events -->
+        ?><!-- /Choose Events by ID-->
 
         <!-- Hide Event if you want to choose event -->
         <?php if ($settings['show_choose_events'] !== 'yes'){ ?>
         <!-- Featured events -->
         <?php
-        if ($settings['show_feature_events'] == 'yes'):
-        // The Loop
-        if ( $the_featured_query->have_posts() ) :
-        while ( $the_featured_query->have_posts() ) : $the_featured_query->the_post();
-          // Do Stuff
-          ?>
-          <?php if ( has_post_thumbnail() ) { ?>
-          <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
-          <?php } else {?>
-            <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
-          <?php  } ?>
-          <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
-          <div class="upcoming-event-item-block" >
-            <?php
-              $events_meta = get_post_meta( get_the_ID());
-             if ($events_meta['_featured'][0] == 'yes'): ?>
-              <span class="event-type" style="background-color: orange;"><i aria-hidden="true" class="fas fa-star"></i> Featured event</span>
-            <?php else:?>
-              <span class="event-type">Upcoming event</span>
-              <?php endif; ?>
-            <span class="event-meta-date">
-            <?php
-              $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
-              echo gmdate("F d, Y - g:i a", $event_meta_date);
-             ?>
-           </span>
+          if ($settings['show_feature_events'] == 'yes'):
+            // The Loop
+            if ( $the_featured_query->have_posts() ) :
+              while ( $the_featured_query->have_posts() ) : $the_featured_query->the_post();
+                // Do Stuff
+                ?>
+                <?php if ( has_post_thumbnail() ) { ?>
+                  <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
+                <?php } else {?>
+                  <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
+                <?php  } ?>
+                    <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
+                      <div class="upcoming-event-item-block" >
+                        <?php
+                          $events_meta = get_post_meta( get_the_ID());
+                          if ($events_meta['_featured'][0] == 'yes'): ?>
+                              <span class="event-type" style="background-color: orange;"><i aria-hidden="true" class="fas fa-star"></i> Featured event</span>
+                            <?php else:?>
+                              <span class="event-type">Upcoming event</span>
+                            <?php endif; ?>
+                              <span class="event-meta-date">
+                              <?php
+                                $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
+                                echo gmdate("F d, Y - g:i a", $event_meta_date);
+                               ?>
+                             </span>
 
-            <h3 class="upcoming-event-title">
-               <?php echo the_title(); ?>
-             </h3>
-          </div>
-          </a>
-          <?php
-            $get_event = get_post_meta( get_the_ID());
-            if ($get_event['evotx_tix'][0] == 'yes'): ?>
-            <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
-              Buy Ticket
-            </a>
-          <?php endif; ?>
-        </div>
-        <?php
-        endwhile;
-        endif;
+                        <h3 class="upcoming-event-title">
+                           <?php echo the_title(); ?>
+                         </h3>
+                      </div>
+                    </a>
+                  <?php
+                    $get_event = get_post_meta( get_the_ID());
+                    if ($get_event['evotx_tix'][0] == 'yes'): ?>
+                    <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
+                      Buy Ticket
+                    </a>
+                  <?php endif; ?>
+                </div>
+                <?php
+              endwhile;
+          endif;
         endif;
         // Reset Post Data
         wp_reset_postdata();
@@ -405,47 +404,47 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       <?php
       if ($count_featured < 3):
       // The Loop
-      if ( $the_query->have_posts() ) :
-      while ( $the_query->have_posts() ) : $the_query->the_post();
-        // Do Stuff
-        ?>
-        <?php if ( has_post_thumbnail() ) { ?>
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
-        <?php } else {?>
-          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
-        <?php  } ?>
-        <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
-        <div class="upcoming-event-item-block" >
-          <?php
-            $events_meta = get_post_meta( get_the_ID());
-           if ($events_meta['_featured'][0] == 'yes'): ?>
-            <span class="event-type" style="background-color: orange;">Featured event</span>
-          <?php else:?>
-            <span class="event-type">Upcoming event</span>
-            <?php endif; ?>
-          <span class="event-meta-date">
-          <?php
-            $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
-            echo gmdate("F d, Y - g:i a", $event_meta_date);
-           ?>
-         </span>
+        if ( $the_query->have_posts() ) :
+            while ( $the_query->have_posts() ) : $the_query->the_post();
+              // Do Stuff
+              ?>
+              <?php if ( has_post_thumbnail() ) { ?>
+                <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
+                <?php } else {?>
+                <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
+                <?php  } ?>
+                  <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
+                    <div class="upcoming-event-item-block" >
+                      <?php
+                        $events_meta = get_post_meta( get_the_ID());
+                        if ($events_meta['_featured'][0] == 'yes'): ?>
+                          <span class="event-type" style="background-color: orange;">Featured event</span>
+                        <?php else:?>
+                          <span class="event-type">Upcoming event</span>
+                        <?php endif; ?>
+                          <span class="event-meta-date">
+                          <?php
+                            $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
+                            echo gmdate("F d, Y - g:i a", $event_meta_date);
+                           ?>
+                         </span>
 
-          <h3 class="upcoming-event-title">
-             <?php echo the_title(); ?>
-           </h3>
-        </div>
-        </a>
-        <?php
-          $get_event = get_post_meta( get_the_ID());
-          if ($get_event['evotx_tix'][0] == 'yes'): ?>
-          <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
-            Buy Ticket
-          </a>
-        <?php endif; ?>
-      </div>
-      <?php
-      endwhile;
-      endif;
+                      <h3 class="upcoming-event-title">
+                         <?php echo the_title(); ?>
+                       </h3>
+                    </div>
+                  </a>
+                <?php
+                  $get_event = get_post_meta( get_the_ID());
+                  if ($get_event['evotx_tix'][0] == 'yes'): ?>
+                  <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" class="upcomming-btn-buy-ticket">
+                    Buy Ticket
+                  </a>
+                <?php endif; ?>
+              </div>
+              <?php
+            endwhile;
+        endif;
       endif;
       // Reset Post Data
       wp_reset_postdata();
@@ -454,32 +453,32 @@ class Upcoming_Events extends \Elementor\Widget_Base {
       <!-- Passed events -->
       <?php
       if ($count_upcoming < 3 && $count_featured == 0):
-      // The Loop
-      if ( $query_passed_event->have_posts() ) :
-      while ( $query_passed_event->have_posts() ) : $query_passed_event->the_post();
-        // Do Stuff
-        ?>
-        <?php if ( has_post_thumbnail() ) { ?>
-        <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
-        <?php } else {?>
-          <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
-        <?php  } ?>
-        <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
-        <div class="upcoming-event-item-block" >
-          <span class="event-type" style="background-color: #c7443a;">Passed event</span>
-          <span class="event-meta-date">
-          <?php
-            $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
-            echo gmdate("F d, Y - g:i a", $event_meta_date);
-           ?>
-         </span>
-          <h3 class="upcoming-event-title"> <?php echo the_title(); ?></h3>
-        </div>
-        </a>
-      </div>
-        <?php
-      endwhile;
-      endif;
+        // The Loop
+        if ( $query_passed_event->have_posts() ) :
+          while ( $query_passed_event->have_posts() ) : $query_passed_event->the_post();
+            // Do Stuff
+            ?>
+            <?php if ( has_post_thumbnail() ) { ?>
+              <div class="upcoming-event-item" style="background: url('<?php the_post_thumbnail_url(); ?>') center center">
+            <?php } else {?>
+              <div class="upcoming-event-item" style="background: url('<?php echo plugins_url().'/bradfield-elementor-addons/assets/imgs/calendar-thumnail-default.png'; ?>') center center;">
+              <?php  } ?>
+                <a class="upcoming-event-link" href="<?php echo get_permalink(); ?>">
+                  <div class="upcoming-event-item-block" >
+                    <span class="event-type" style="background-color: #c7443a;">Passed event</span>
+                    <span class="event-meta-date">
+                    <?php
+                      $event_meta_date = get_post_meta( get_the_ID(), 'evcal_srow', true);
+                      echo gmdate("F d, Y - g:i a", $event_meta_date);
+                     ?>
+                   </span>
+                    <h3 class="upcoming-event-title"> <?php echo the_title(); ?></h3>
+                  </div>
+                </a>
+              </div>
+            <?php
+          endwhile;
+        endif;
       endif;
       // Reset Post Data
       wp_reset_postdata();
