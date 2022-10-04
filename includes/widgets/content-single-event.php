@@ -68,53 +68,55 @@ class Content_single_Event extends \Elementor\Widget_Base {
       // generate the final HTML on the frontend using PHP
       $settings = $this->get_settings_for_display();
       $event_id = get_the_ID();
-      $args = array(
-        'post_type'   => 'product'
-      );
-
       $now = current_time('timestamp');
-
+      $curent_year = date("Y");
       $get_event = get_post_meta( $event_id );
-
       $event_repeat_intervals = get_post_meta(get_the_ID(), 'repeat_intervals', true);
+      $event_start_time = get_post_meta(get_the_ID(), 'evcal_srow', true);
+      $event_end_time = get_post_meta(get_the_ID(), 'evcal_erow', true);
+      $event_repeat = get_post_meta(get_the_ID(), 'evcal_repeat', true);
+      $get_ticket_status = get_post_meta(get_the_ID(), 'evotx_tix', true);
 
-      $get_ticket_status = $get_event['evotx_tix'];
-
-      $EVENT = new EVO_Event($event_id);
-
-      // get all event array meta data
-      $all_array_data = $EVENT->get_all_edata();
-
-      // get just one field from the meta array
-      $one_field = $EVENT->get_eprop('field_name');
+        if ($event_repeat !== 'yes') {
+          ?>
+          <style media="screen">
+            .bradfield-event-date .evocard_box.time{
+              border-bottom: 1px solid #D9D9D9;
+            }
+          </style>
+          <?php
+        }
       ?>
       <div id="content-single-event" class="content-single-container">
-        <div class="event-info-block">
-          <!-- heading -->
-          <div class="event-info-heading">
-            <h1 class="event-title"><?php echo the_title(); ?></h1>
-            <?php if ($get_event['evotx_tix'][0] == 'yes'): ?>
-              <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" id="event-btn-buy-ticket">
-                buy ticket now
-              </a>
-            <?php endif; ?>
+        <?php //print_r($get_event); ?>
+          <div class="event-info-block">
+            <!-- heading -->
+            <div class="event-info-heading">
+              <h1 class="event-title"><?php echo the_title(); ?></h1>
+              <?php if ($get_ticket_status == 'yes'): ?>
+                <a href="<?php echo get_permalink($get_event['tx_woocommerce_product_id'][0]); ?>" id="event-btn-buy-ticket">
+                  buy ticket now
+                </a>
+              <?php endif; ?>
+            </div>
+            <!-- /heading -->
+
+            <!-- Event Date & time -->
+            <div class="bradfield-event-date">
+              <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,repeats,organizer,addtocal" ]'); ?>
+            </div>
           </div>
-          <!-- /heading -->
-          <!-- Event Date & time -->
-          <div class="bradfield-event-date">
-            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="time,organizer,addtocal," ]'); ?>
-          </div>
-        </div>
 
-        <div class="bradfield-event-thumbnail">
-          <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="ftimage,"]'); ?>
-        </div>
+          <!-- Event Thumbnail -->
+          <div class="bradfield-event-thumbnail">
+            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="ftimage,"]'); ?>
+          </div><!-- /Event Thumbnail -->
 
-        <div class="bradfield-event-detail">
-          <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="eventdetails,"]'); ?>
-        </div>
+          <!-- Event Detail -->
+          <div class="bradfield-event-detail">
+            <?php echo do_shortcode('[add_single_eventon id="'.$event_id.'" event_parts="yes" ep_fields="eventdetails,"]'); ?>
+          </div><!-- /Event Detail -->
 
-        <!-- <i class="fas fa-phone-alt"></i> -->
       </div>
 
   <?php
